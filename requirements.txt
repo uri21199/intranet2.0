@@ -1,0 +1,2 @@
+Codigo para ejecutar el sass: sass --watch static/sass/main.scss:static/css/main.css
+Enlace de sidebar ideal: https://www.youtube.com/watch?v=5n-tiNha5kw&t=128s
