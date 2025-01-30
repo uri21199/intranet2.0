@@ -3,14 +3,13 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="containerDays">
-    <div class="containerTitleDays">
+    <div class="containerDays">
         <h2>Solicitar Día</h2>
+        {% include 'components/formDays.html' %}
+        {% include 'components/tableDays.html' %}
     </div>
-    {% include 'components/formDays.html' %}
-    {% include 'components/tableDays.html' %}
-</div>
 {% endblock %}
+
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/formDays.js') }}"></script>
 {% endblock %}

@@ -1,0 +1,21 @@
+@use '../base/variables';
+
+.containerDays{
+
+    flex-grow: 1; // Hace que el contenido ocupe el resto del espacio disponible
+    transition: margin-left 0.3s ease;
+
+    .containerTitleDays{
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        padding-left: .7rem;
+        background-color: variables.$color-white;
+        /* background-color: red; */
+        width: 100%;
+        box-shadow: variables.$box-shadow-wmms;
+        h2{
+            font-weight: bold;
+        }
+    }
+}

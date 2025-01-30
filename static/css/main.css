@@ -1,5 +1,6 @@
 aside {
   height: 100vh;
+  width: 13rem;
   background-color: #fff;
   box-shadow: 1rem 3rem 4rem rgba(132, 139, 200, 0.18);
 }
@@ -52,6 +53,7 @@ aside .sidebar {
   flex-direction: column;
   height: 86vh;
   position: relative;
+  transition: width 0.3s ease;
 }
 
 aside h3 {
@@ -170,11 +172,11 @@ aside .sidebar .message-count {
   }
 }
 .containerOwn {
-  display: grid;
-  width: 96%;
+  display: flex;
+  width: 100%;
   margin: 0;
-  gap: 1.8rem;
-  grid-template-columns: 14rem auto 23rem;
+  /*     gap: 1.8rem;
+      grid-template-columns: 14rem auto 23rem; */
 }
 .containerOwn a {
   color: #363949;
@@ -210,6 +212,9 @@ aside .sidebar .message-count {
 .containerOwn .warning {
   color: #ffbb55;
 }
+.containerOwn h1, .containerOwn h2, .containerOwn h3, .containerOwn h4, .containerOwn h5, .containerOwn h6 {
+  margin: 0;
+}
 .containerOwn h1 {
   font-weight: 800;
   font-size: 1.8rem;
@@ -241,6 +246,80 @@ aside .sidebar .message-count {
     width: 100%;
   }
 }
+.containerFormDays {
+  background: white;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+}
+.containerFormDays select, .containerFormDays input, .containerFormDays button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.containerFormDays button {
+  background-color: #ff6b35;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.tableDays {
+  margin-top: 20px;
+}
+.tableDays table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.tableDays th, .tableDays td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+.tableDays th {
+  background-color: #ddd;
+}
+.tableDays .status-pending {
+  font-weight: bold;
+  color: #000000;
+}
+.tableDays .status-approved {
+  font-weight: bold;
+  color: #2a8129;
+}
+.tableDays .status-rejected {
+  font-weight: bold;
+  color: #8d3030;
+}
+.tableDays .actions {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.containerDays {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+.containerDays .containerTitleDays {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.7rem;
+  background-color: #fff;
+  /* background-color: red; */
+  width: 100%;
+  box-shadow: 0.3rem 0rem 0.3rem #e8540d;
+}
+.containerDays .containerTitleDays h2 {
+  font-weight: bold;
+}
+
 * {
   margin: 0;
   padding: 0;

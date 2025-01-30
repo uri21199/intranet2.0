@@ -1,0 +1,18 @@
+<div class="containerFormDays">
+    <label for="typeDay">Tipo de Día</label>
+    <select id="typeDay" onchange="cambiarFormulario()">
+        <option value="ausencia">Día de ausencia</option>
+        <option value="home_office">Día de home office</option>
+        <option value="estudio">Día de estudio</option>
+        <option value="vacaciones">Días de vacaciones</option>
+    </select>
+    
+    <div id="formFields">
+        <label for="motivo">Motivo</label>
+        <input type="text" id="motivo" placeholder="Motivo">
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha">
+    </div>
+    
+    <button>Enviar solicitud</button>
+</div>

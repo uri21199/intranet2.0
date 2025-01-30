@@ -11,6 +11,10 @@ $color-light: rgba(132, 139, 200, 0.18);
 $color-primary-variant: #111e88;
 $color-dark-variant: #677483;
 $color-background: #f6f6f9;
+$color-approved: #2a8129;
+$color-pending: #000000;
+$color-rejected: #8d3030;
+$color-orange-wmms: #e8540d;
 
 // Bordes
 $card-border-radius: 2rem;
@@ -23,4 +27,5 @@ $card-padding: 1.8rem;
 $padding-1: 1.2rem;
 
 // Sombras
-$box-shadow: 0 2rem 3rem $color-light;
+$box-shadow-light: 0 2rem 3rem $color-light;
+$box-shadow-wmms: .3rem 0rem 0.3rem $color-orange-wmms;

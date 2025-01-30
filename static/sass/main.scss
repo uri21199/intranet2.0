@@ -1,6 +1,9 @@
 @use './base/variables';
 @use './components/sidebar';
 @use './components/containerOwn';
+@use './components/formDays';
+@use './components/tableDays';
+@use './pages/days';
 
 *{
     margin: 0;

@@ -2,11 +2,11 @@
 
 .containerOwn{
 
-    display: grid;
-    width: 96%;
+    display: flex;
+    width: 100%;
     margin: 0;
-    gap: 1.8rem;
-    grid-template-columns: 14rem auto 23rem;
+/*     gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem; */
 
     a{
         color: variables.$color-dark;
@@ -50,6 +50,10 @@
 
     .warning{
         color: variables.$color-warning;
+    }
+
+    h1, h2, h3, h4, h5, h6{
+        margin: 0;
     }
 
     h1{
