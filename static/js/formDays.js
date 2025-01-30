@@ -3,14 +3,14 @@ function cambiarFormulario() {
     const formulario = document.getElementById("formFields");
     formulario.innerHTML = ""; 
 
-    if (tipoDia === "ausencia") {
+    if (tipoDia === "ausencia" || tipoDia == 'estudio') {
         formulario.innerHTML = `
             <label for="motivo">Motivo</label>
             <input type="text" id="motivo" placeholder="Motivo">
             <label for="fecha">Fecha</label>
             <input type="date" id="fecha">
         `;
-    } else if (tipoDia === "home_office" || tipoDia === "estudio") {
+    } else if (tipoDia === "home_office") {
         formulario.innerHTML = `
             <label for="fecha">Fecha o Fechas</label>
             <input type="date" id="fecha" multiple>

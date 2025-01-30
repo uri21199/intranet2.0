@@ -1,23 +1,53 @@
 .containerFormDays {
     background: white;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    padding: 25px;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
 
-    select, input, button {
+    select, input {
         width: 100%;
-        padding: 10px;
-        margin-top: 10px;
-        border-radius: 5px;
+        padding: 12px;
+        margin-top: 8px;
+        margin-bottom: 15px;
+        border-radius: 6px;
         border: 1px solid #ccc;
+        font-size: 14px;
+        transition: all 0.3s ease-in-out;
     }
+
+    select:focus, input:focus {
+        border-color: #ff6b35;
+        outline: none;
+        box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
+    }
+
     button {
         background-color: #ff6b35;
         color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 12px 15px;
         border: none;
+        border-radius: 6px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px; /* Espaciado entre icono y texto */
+        transition: all 0.3s ease-in-out;
     }
+    
+    button:hover, button:focus {
+        background-color: #e65b2a;
+        box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+        outline: 2px solid #ff6b35;
+    }
+    
+    button:active {
+        transform: scale(0.98);
+    }
+    
 
 }

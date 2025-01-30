@@ -1,3 +1,4 @@
+@charset "UTF-8";
 aside {
   height: 100vh;
   width: 13rem;
@@ -248,58 +249,121 @@ aside .sidebar .message-count {
 }
 .containerFormDays {
   background: white;
-  padding: 20px;
-  margin: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  padding: 25px;
+  margin: 20px auto;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 350px;
 }
-.containerFormDays select, .containerFormDays input, .containerFormDays button {
+.containerFormDays select, .containerFormDays input {
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 5px;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border-radius: 6px;
   border: 1px solid #ccc;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+.containerFormDays select:focus, .containerFormDays input:focus {
+  border-color: #ff6b35;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
 }
 .containerFormDays button {
   background-color: #ff6b35;
   color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 15px;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaciado entre icono y texto */
+  transition: all 0.3s ease-in-out;
+}
+.containerFormDays button:hover, .containerFormDays button:focus {
+  background-color: #e65b2a;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+  outline: 2px solid #ff6b35;
+}
+.containerFormDays button:active {
+  transform: scale(0.98);
 }
 
 .tableDays {
-  margin-top: 20px;
+  margin: 1rem 2rem;
+}
+.tableDays h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 .tableDays table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 .tableDays th, .tableDays td {
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 12px;
   text-align: left;
 }
 .tableDays th {
-  background-color: #ddd;
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
 }
 .tableDays .status-pending {
+  background-color: #fff9c4;
+  color: #8a6d3b;
+  padding: 6px 10px;
   font-weight: bold;
-  color: #000000;
 }
 .tableDays .status-approved {
+  background-color: #d4f8dc;
+  color: #2c6b3b;
+  padding: 6px 10px;
   font-weight: bold;
-  color: #2a8129;
 }
 .tableDays .status-rejected {
+  background-color: #f8d7da;
+  color: #a94442;
+  padding: 6px 10px;
   font-weight: bold;
-  color: #8d3030;
 }
 .tableDays .actions {
   display: flex;
   gap: 5px;
   cursor: pointer;
+}
+.tableDays .actions button, .tableDays .file button {
+  background: white;
+  border: none;
+  padding: 6px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.tableDays .actions button:hover, .tableDays .file button:hover {
+  background: #ff6b35;
+  color: white;
+  transform: scale(1.1);
+}
+.tableDays .actions button i {
+  font-size: 16px;
+}
+.tableDays tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.tableDays tr:hover {
+  background-color: #ffe8e0;
+  transition: background 0.3s ease-in-out;
 }
 
 .containerDays {
@@ -314,10 +378,12 @@ aside .sidebar .message-count {
   background-color: #fff;
   /* background-color: red; */
   width: 100%;
-  box-shadow: 0.3rem 0rem 0.3rem #e8540d;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); /* Sombra más suave */
 }
 .containerDays .containerTitleDays h2 {
+  font-size: 20px;
   font-weight: bold;
+  color: #333; /* Un color más oscuro para mejor contraste */
 }
 
 * {
