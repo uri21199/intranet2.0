@@ -16,11 +16,11 @@
 
     <!-- Incluir Sidebar -->
     
-    <div class="containerSidebar">
+    <div class="containerOwn">
         {% include 'components/sidebar.html' %}
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% endblock %}
     </div>
-
-    <script></script>
+    <script src="{{ url_for('static', filename='js/navigation.js') }}"></script>
 </body>
 </html>
