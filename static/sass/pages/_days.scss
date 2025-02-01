@@ -13,11 +13,17 @@
         background-color: variables.$color-white;
         /* background-color: red; */
         width: 100%;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); /* Sombra más suave */
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
         h2{
             font-size: 20px;
             font-weight: bold;
-            color: #333; /* Un color más oscuro para mejor contraste */
+            color: #333;
+            padding-left: .3rem;
         }
+    }
+
+    .containerFormTable{
+        display: flex;
+        margin-top: 2rem;
     }
 }

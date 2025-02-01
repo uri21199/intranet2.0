@@ -1,15 +1,18 @@
 {% extends 'layouts/base.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Solicitar día{% endblock %}
 
 {% block content %}
-    <div class="containerDays">
+<div class="containerDays">
+    <div class="containerTitleDays">
         <h2>Solicitar Día</h2>
+    </div>
+    <div class="containerFormTable">
         {% include 'components/formDays.html' %}
         {% include 'components/tableDays.html' %}
     </div>
+</div>
 {% endblock %}
-
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/formDays.js') }}"></script>
 {% endblock %}

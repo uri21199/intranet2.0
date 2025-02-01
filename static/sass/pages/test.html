@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Días</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+        }
+        .form-container {
+            flex: 1;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .table-container {
+            flex: 2;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #ff6b35;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #ddd;
+        }
+        .status-pending {
+            color: red;
+        }
+        .status-approved {
+            color: green;
+        }
+        .status-rejected {
+            color: darkred;
+        }
+        .actions {
+            display: flex;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Solicitar Día</h2>
+            <label for="tipoDia">Tipo de Día</label>
+            <select id="tipoDia" onchange="cambiarFormulario()">
+                <option value="ausencia">Día de ausencia</option>
+                <option value="home_office">Día de home office</option>
+                <option value="estudio">Día de estudio</option>
+                <option value="vacaciones">Días de vacaciones</option>
+            </select>
+            
+            <div id="formularioCampos"></div>
+            
+            <button>Enviar solicitud</button>
+        </div>
+        
+        <div class="table-container">
+            <h3>Historial de solicitudes</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tipo de Día</th>
+                        <th>Fecha(s)</th>
+                        <th>Motivo</th>
+                        <th>Estado</th>
+                        <th>Archivo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Día de ausencia</td>
+                        <td>15/11/2023</td>
+                        <td>Cita médica</td>
+                        <td class="status-pending">Pendiente</td>
+                        <td><button>Subir</button></td>
+                        <td class="actions">📝 🗑</td>
+                    </tr>
+                    <tr>
+                        <td>Día de estudio</td>
+                        <td>07/12/2023 - 08/12/2023</td>
+                        <td>Preparación examen</td>
+                        <td class="status-approved">Aprobado</td>
+                        <td><button>Subir</button></td>
+                        <td class="actions">📝 🗑</td>
+                    </tr>
+                    <tr>
+                        <td>Días de vacaciones</td>
+                        <td>20/12/2023 - 30/12/2023</td>
+                        <td>-</td>
+                        <td class="status-rejected">Rechazado</td>
+                        <td>-</td>
+                        <td class="actions">📝 🗑</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function cambiarFormulario() {
+            const tipoDia = document.getElementById("tipoDia").value;
+            const formulario = document.getElementById("formularioCampos");
+            formulario.innerHTML = ""; 
+
+            if (tipoDia === "ausencia") {
+                formulario.innerHTML = `
+                    <label for="motivo">Motivo</label>
+                    <input type="text" id="motivo" placeholder="Motivo">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha">
+                `;
+            } else if (tipoDia === "home_office" || tipoDia === "estudio") {
+                formulario.innerHTML = `
+                    <label for="fecha">Fecha o Fechas</label>
+                    <input type="date" id="fecha" multiple>
+                `;
+            } else if (tipoDia === "vacaciones") {
+                formulario.innerHTML = `
+                    <label for="inicio">Fecha inicio</label>
+                    <input type="date" id="inicio">
+                    <label for="fin">Fecha fin</label>
+                    <input type="date" id="fin">
+                    <label for="asistencia">¿Requiere asistencia al viajero?</label>
+                    <select id="asistencia">
+                        <option value="no">No</option>
+                        <option value="si">Sí</option>
+                    </select>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

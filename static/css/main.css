@@ -1,4 +1,3 @@
-@charset "UTF-8";
 aside {
   height: 100vh;
   width: 13rem;
@@ -250,7 +249,7 @@ aside .sidebar .message-count {
 .containerFormDays {
   background: white;
   padding: 25px;
-  margin: 20px auto;
+  margin: 1rem 2rem;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   width: 350px;
@@ -378,12 +377,17 @@ aside .sidebar .message-count {
   background-color: #fff;
   /* background-color: red; */
   width: 100%;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05); /* Sombra más suave */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 }
 .containerDays .containerTitleDays h2 {
   font-size: 20px;
   font-weight: bold;
-  color: #333; /* Un color más oscuro para mejor contraste */
+  color: #333;
+  padding-left: 0.3rem;
+}
+.containerDays .containerFormTable {
+  display: flex;
+  margin-top: 2rem;
 }
 
 * {

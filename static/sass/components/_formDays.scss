@@ -1,7 +1,9 @@
+@use '../base/variables';
+
 .containerFormDays {
     background: white;
     padding: 25px;
-    margin: 20px auto;
+    margin: 1rem 2rem;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     width: 350px;
@@ -18,13 +20,13 @@
     }
 
     select:focus, input:focus {
-        border-color: #ff6b35;
+        border-color: variables.$color-orange-wmms-focus;
         outline: none;
         box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
     }
 
     button {
-        background-color: #ff6b35;
+        background-color: variables.$color-orange-wmms-focus;
         color: white;
         font-size: 16px;
         font-weight: bold;
@@ -42,7 +44,7 @@
     button:hover, button:focus {
         background-color: #e65b2a;
         box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
-        outline: 2px solid #ff6b35;
+        outline: 2px solid variables.$color-orange-wmms-focus;
     }
     
     button:active {
