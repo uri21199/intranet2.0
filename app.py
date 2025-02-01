@@ -1,10 +1,10 @@
-from flask import Flask, render_template
+from flask import Flask
+from routes import register_blueprints
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    return render_template('index.html')
+# Registrar las rutas organizadas
+register_blueprints(app)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
