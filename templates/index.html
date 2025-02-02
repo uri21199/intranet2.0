@@ -1,10 +1,29 @@
-{% extends 'layouts/base.html' %}
-
-{% block title %}Home{% endblock %}
-
-{% block content %}
-<p>Bienvenido</p>
-{% endblock %}
-{% block scripts %}
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión - WMMS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <div class="containerLogin">
+        <div class="loginSection">
+            <h2>Iniciar sesión</h2>
+            <form action="#" class="loginForm">
+                <input type="email" placeholder="Ingrese su correo electrónico">
+                <input type="password" placeholder="Ingrese su contraseña">
+                <a href="#">Olvidé mi contraseña</a>
+                <button>Iniciar sesión</button>
+            </form>
+        </div>
+        <div class="welcomeSection">
+            <div class="logo">⭐ WMMS</div>
+            <h1>Bienvenido a la Intranet de WMMS</h1>
+            <p>Accede con tu usuario y descubre todas las funciones disponibles.</p>
+        </div>
+    </div>
+</body>
+</html>

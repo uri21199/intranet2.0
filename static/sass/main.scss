@@ -3,8 +3,10 @@
 @use './components/containerOwn';
 @use './components/formDays';
 @use './components/tableDays';
+@use './components/loginSection';
+@use './components/welcomeSection';
 @use './pages/days';
-
+@use './pages/home';
 *{
     margin: 0;
     padding: 0;

@@ -365,6 +365,88 @@ aside .sidebar .message-count {
   transition: background 0.3s ease-in-out;
 }
 
+.loginSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  background: white;
+}
+
+.loginForm {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginSection h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.loginSection input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.loginSection a {
+  display: block;
+  text-align: right;
+  color: #666;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.loginSection button {
+  width: 100%;
+  padding: 10px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.welcomeSection {
+  flex: 1;
+  background: red;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.welcomeSection h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.welcomeSection p {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.welcomeSection .logo {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .containerDays {
   flex-grow: 1;
   transition: margin-left 0.3s ease;
@@ -388,6 +470,16 @@ aside .sidebar .message-count {
 .containerDays .containerFormTable {
   display: flex;
   margin-top: 2rem;
+}
+
+.containerLogin {
+  display: flex;
+  height: 100vh;
+  margin: 0 0 0 0;
+  background: white;
+  /*             border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  overflow: hidden;
 }
 
 * {
