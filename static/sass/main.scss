@@ -1,11 +1,13 @@
 @use './base/variables';
 @use './components/sidebar';
 @use './components/containerOwn';
+@use './components/containerInfoDashboard';
 @use './components/formDays';
 @use './components/tableDays';
 @use './components/loginSection';
 @use './components/welcomeSection';
 @use './pages/days';
+@use './pages/dashboard';
 @use './pages/home';
 *{
     margin: 0;

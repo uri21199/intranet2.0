@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<div class="containerDashboard">
+    <div class="containerTitleDashboard">
+        <h2>📂 WMMS Intranet</h2>
+    </div>
+    <div class="containerInfoDashboard">
+        {% include 'components/leftSectionDashboard.html' %}
+        {% include 'components/rightSectionDashboard.html' %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}
