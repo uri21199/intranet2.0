@@ -8,10 +8,13 @@
 @use './components/tableRoom';
 @use './components/loginSection';
 @use './components/welcomeSection';
+@use './components/sidebarDocuments';
+@use './components/mainDocuments';
 @use './pages/days';
 @use './pages/rooms';
 @use './pages/dashboard';
 @use './pages/home';
+@use './pages/documents';
 *{
     margin: 0;
     padding: 0;

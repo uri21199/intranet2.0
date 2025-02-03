@@ -639,6 +639,75 @@ aside .sidebar .message-count {
   font-weight: bold;
 }
 
+.sidebarDocuments {
+  width: 250px;
+  background-color: #eceff4;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarDocuments h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.sidebarDocuments button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.sidebarDocuments .folder {
+  margin-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mainDocuments {
+  flex: 1;
+  padding: 20px;
+}
+.mainDocuments .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #b0bec5;
+  padding: 15px;
+  border-radius: 5px;
+}
+.mainDocuments .table-container {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.mainDocuments table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.mainDocuments th, .mainDocuments td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+.mainDocuments th {
+  background-color: #f5f5f5;
+}
+.mainDocuments .actions {
+  display: flex;
+  gap: 10px;
+}
+.mainDocuments .actions i {
+  cursor: pointer;
+}
+
 .containerDays {
   flex-grow: 1;
   transition: margin-left 0.3s ease;
@@ -718,6 +787,31 @@ aside .sidebar .message-count {
   /*             border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
   overflow: hidden;
+}
+
+.containerDocuments {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+.containerDocuments .containerTitleDocuments {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.7rem;
+  background-color: #fff;
+  /* background-color: red; */
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+.containerDocuments .containerTitleDocuments h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  padding-left: 0.3rem;
+}
+.containerDocuments .containerFormTable {
+  display: flex;
+  margin-top: 2rem;
 }
 
 * {
