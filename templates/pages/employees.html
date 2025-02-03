@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Empleados{% endblock %}
+
+{% block content %}
+<div class="containerEmployees">
+    <div class="containerTitleEmployees">
+        <h2>Empleados</h2>
+        <nav>
+            <button class="btn-empleados">Empleados</button>
+            <button class="btn-areas">Áreas</button>
+        </nav>
+    </div>
+    <div class="containerFormTable">
+        {% include 'components/formEmployees.html' %}
+        {% include 'components/infoEmployees.html' %}
+        {% include 'components/cardEmployees.html' %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/modalEmployees.js') }}"></script>
+{% endblock %}

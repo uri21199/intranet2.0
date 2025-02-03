@@ -1,0 +1,115 @@
+<div class="dashboard">
+    <!-- Tarjeta: Días Solicitados -->
+    <div class="card">
+        <h3>Días Solicitados</h3>
+        <table>
+            <tr>
+                <td>15/10/2023 - Vacaciones</td>
+                <td><span class="status pending">Pendiente ✏️</span></td>
+            </tr>
+            <tr>
+                <td>20/10/2023 - Home</td>
+                <td><span class="status approved">Aprobado ✏️</span></td>
+            </tr>
+        </table>
+        <button class="open-modal" data-modal="modalDias">Ver más ⬇️</button>
+    </div>
+
+    <!-- Tarjeta: Capacitaciones -->
+    <div class="card">
+        <h3>Capacitaciones</h3>
+        <table>
+            <tr>
+                <td>Liderazgo Efectivo</td>
+                <td><span class="status completed">Finalizado 👁️</span></td>
+            </tr>
+            <tr>
+                <td>Gestión de Equipos</td>
+                <td><span class="status pending">Pendiente ✏️</span></td>
+            </tr>
+        </table>
+        <button class="open-modal" data-modal="modalCapacitaciones">Ver más ⬇️</button>
+    </div>
+
+    <!-- Tarjeta: Reservas de Sala -->
+    <div class="card">
+        <h3>Reservas de Sala</h3>
+        <table>
+            <tr>
+                <td>22/10/2023 - Sala A</td>
+                <td><span class="status reserved">Reservada 👁️</span></td>
+            </tr>
+            <tr>
+                <td>25/10/2023 - Sala B</td>
+                <td><span class="status pending">Pendiente ✏️</span></td>
+            </tr>
+        </table>
+        <button class="open-modal" data-modal="modalReservas">Ver más ⬇️</button>
+    </div>
+
+    <!-- Tarjeta: Recibos de Sueldo -->
+    <div class="card">
+        <h3>Recibos de Sueldo</h3>
+        <table>
+            <tr>
+                <td>Septiembre 2023</td>
+                <td class="salary">$3,200 📥</td>
+            </tr>
+            <tr>
+                <td>Agosto 2023</td>
+                <td class="salary">$3,150 📥</td>
+            </tr>
+        </table>
+        <button class="open-modal" data-modal="modalRecibos">Ver más ⬇️</button>
+    </div>
+</div>
+
+<!-- MODALES (OCULTOS POR DEFECTO) -->
+
+<!-- Modal Días Solicitados -->
+<div id="modalDias" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Días Solicitados</h2>
+        <table>
+            <tr><td>15/10/2023 - Vacaciones</td><td>Pendiente ✏️</td></tr>
+            <tr><td>20/10/2023 - Home</td><td>Aprobado ✏️</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- Modal Capacitaciones -->
+<div id="modalCapacitaciones" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Capacitaciones</h2>
+        <table>
+            <tr><td>Liderazgo Efectivo</td><td>Finalizado 👁️</td></tr>
+            <tr><td>Gestión de Equipos</td><td>Pendiente ✏️</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- Modal Reservas de Sala -->
+<div id="modalReservas" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Reservas de Sala</h2>
+        <table>
+            <tr><td>22/10/2023 - Sala A</td><td>Reservada 👁️</td></tr>
+            <tr><td>25/10/2023 - Sala B</td><td>Pendiente ✏️</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- Modal Recibos de Sueldo -->
+<div id="modalRecibos" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Recibos de Sueldo</h2>
+        <table>
+            <tr><td>Septiembre 2023</td><td class="salary">$3,200 📥</td></tr>
+            <tr><td>Agosto 2023</td><td class="salary">$3,150 📥</td></tr>
+        </table>
+    </div>
+</div>

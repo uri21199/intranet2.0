@@ -1,0 +1,44 @@
+@use '../base/variables';
+
+.containerEmployees{
+
+    flex-grow: 1; // Hace que el contenido ocupe el resto del espacio disponible
+    transition: margin-left 0.3s ease;
+
+    .containerTitleEmployees{
+        height: 3rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: .7rem;
+        background-color: variables.$color-white;
+        /* background-color: red; */
+        width: 100%;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+        h2{
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            padding-left: .3rem;
+        }
+
+        nav{
+            margin: 2rem;
+            button {
+                background-color: variables.$color-orange-wmms-focus;
+                color: white;
+                font-size: 16px;
+                font-weight: bold;
+                padding: .5rem;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+
+    .containerFormTable{
+        margin-top: 2rem;
+    }
+}

@@ -2,8 +2,12 @@
 @use './components/sidebar';
 @use './components/containerOwn';
 @use './components/containerInfoDashboard';
+@use './components/containerEmployees';
 @use './components/formDays';
 @use './components/formRoom';
+@use './components/formEmployees';
+@use './components/containerInfoEmployees';
+@use './components/cardEmployees';
 @use './components/tableDays';
 @use './components/tableRoom';
 @use './components/loginSection';
@@ -15,6 +19,7 @@
 @use './pages/dashboard';
 @use './pages/home';
 @use './pages/documents';
+@use './pages/employees';
 *{
     margin: 0;
     padding: 0;
