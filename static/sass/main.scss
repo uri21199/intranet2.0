@@ -3,10 +3,13 @@
 @use './components/containerOwn';
 @use './components/containerInfoDashboard';
 @use './components/formDays';
+@use './components/formRoom';
 @use './components/tableDays';
+@use './components/tableRoom';
 @use './components/loginSection';
 @use './components/welcomeSection';
 @use './pages/days';
+@use './pages/rooms';
 @use './pages/dashboard';
 @use './pages/home';
 *{

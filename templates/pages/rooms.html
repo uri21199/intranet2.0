@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Solicitar día{% endblock %}
+
+{% block content %}
+<div class="containerRoom">
+    <div class="containerTitleRoom">
+        <h2>Reservar sala</h2>
+    </div>
+    <div class="containerFormTable">
+        {% include 'components/formRoom.html' %}
+        {% include 'components/tableRoom.html' %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/formRoom.js') }}"></script>
+{% endblock %}

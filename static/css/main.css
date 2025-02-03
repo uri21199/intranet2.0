@@ -366,6 +366,53 @@ aside .sidebar .message-count {
   transform: scale(0.98);
 }
 
+.containerFormRoom {
+  background: white;
+  padding: 25px;
+  margin: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+.containerFormRoom select, .containerFormRoom input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+}
+.containerFormRoom select:focus, .containerFormRoom input:focus {
+  border-color: #ff6b35;
+  outline: none;
+  box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
+}
+.containerFormRoom button {
+  background-color: #ff6b35;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaciado entre icono y texto */
+  transition: all 0.3s ease-in-out;
+}
+.containerFormRoom button:hover, .containerFormRoom button:focus {
+  background-color: #e65b2a;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+  outline: 2px solid #ff6b35;
+}
+.containerFormRoom button:active {
+  transform: scale(0.98);
+}
+
 .tableDays {
   margin: 1rem 2rem;
 }
@@ -434,6 +481,78 @@ aside .sidebar .message-count {
   background-color: #f9f9f9;
 }
 .tableDays tr:hover {
+  background-color: #ffe8e0;
+  transition: background 0.3s ease-in-out;
+}
+
+.tableRoom {
+  margin: 1rem 2rem;
+}
+.tableRoom h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.tableRoom table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.tableRoom th, .tableRoom td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: left;
+}
+.tableRoom th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.tableRoom .status-pending {
+  background-color: #fff9c4;
+  color: #8a6d3b;
+  padding: 6px 10px;
+  font-weight: bold;
+}
+.tableRoom .status-approved {
+  background-color: #d4f8dc;
+  color: #2c6b3b;
+  padding: 6px 10px;
+  font-weight: bold;
+}
+.tableRoom .status-rejected {
+  background-color: #f8d7da;
+  color: #a94442;
+  padding: 6px 10px;
+  font-weight: bold;
+}
+.tableRoom .actions {
+  display: flex;
+  gap: 5px;
+  cursor: pointer;
+}
+.tableRoom .actions button, .tableRoom .file button {
+  background: white;
+  border: none;
+  padding: 6px;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+.tableRoom .actions button:hover, .tableRoom .file button:hover {
+  background: #ff6b35;
+  color: white;
+  transform: scale(1.1);
+}
+.tableRoom .actions button i {
+  font-size: 16px;
+}
+.tableRoom tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.tableRoom tr:hover {
   background-color: #ffe8e0;
   transition: background 0.3s ease-in-out;
 }
@@ -541,6 +660,31 @@ aside .sidebar .message-count {
   padding-left: 0.3rem;
 }
 .containerDays .containerFormTable {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.containerRoom {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+.containerRoom .containerTitleRoom {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.7rem;
+  background-color: #fff;
+  /* background-color: red; */
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+.containerRoom .containerTitleRoom h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  padding-left: 0.3rem;
+}
+.containerRoom .containerFormTable {
   display: flex;
   margin-top: 2rem;
 }
