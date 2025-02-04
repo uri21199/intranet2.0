@@ -21,6 +21,9 @@
 @use './components/login/loginSection';
 @use './components/login/welcomeSection';
 
+@use './components/myteam/titleMyTeam';
+@use './components/myteam/homeMyTeam';
+
 @use './components/rooms/formRoom';
 @use './components/rooms/tableRoom';
 @use './components/rooms/titleRoom';
@@ -33,6 +36,7 @@
 @use './pages/home';
 @use './pages/documents';
 @use './pages/employees';
+@use './pages/myteam';
 *{
     margin: 0;
     padding: 0;

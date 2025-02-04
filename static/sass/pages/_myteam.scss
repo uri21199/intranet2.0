@@ -1,0 +1,12 @@
+@use '../base/variables';
+
+.homeMyTeam{
+
+    flex-grow: 1; // Hace que el contenido ocupe el resto del espacio disponible
+    transition: margin-left 0.3s ease;
+
+    .containerMyTeam{
+        display: flex;
+        margin-top: 2rem;
+    }
+}
