@@ -1,44 +1,32 @@
-.containerFormEmployees {
+@use '../../base/variables';
+
+.containerFormRoom {
     background: white;
     padding: 25px;
     margin: 1rem 2rem;
     border-radius: 12px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    width: 350px;
 
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    label {
-        font-size: 16px;
-        font-weight: bold;
-        color: black;
-        margin-bottom: 5px;
-    }
-    
-    select {
-        width: 200px;
-        padding: 10px;
+    select, input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        margin-bottom: 15px;
         border-radius: 6px;
         border: 1px solid #ccc;
         font-size: 14px;
         transition: all 0.3s ease-in-out;
     }
-    
-    select:focus {
-        border-color: #e65b2a;
-        box-shadow: 0 5px 10px rgba(255, 107, 53, 0.5);
+
+    select:focus, input:focus {
+        border-color: variables.$color-orange-wmms-focus;
         outline: none;
+        box-shadow: 0 0 5px rgba(255, 107, 53, 0.5);
     }
-    
+
     button {
-        background-color: #e65b2a;
+        background-color: variables.$color-orange-wmms-focus;
         color: white;
         font-size: 16px;
         font-weight: bold;
@@ -49,19 +37,19 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        gap: 8px; /* Espaciado entre icono y texto */
         transition: all 0.3s ease-in-out;
     }
     
-    button:hover {
-        background-color: #ff7043;
+    button:hover, button:focus {
+        background-color: #e65b2a;
         box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
-        outline: 2px solid #e65b2a;
+        outline: 2px solid variables.$color-orange-wmms-focus;
     }
     
     button:active {
         transform: scale(0.98);
     }
+    
+
 }
-
-

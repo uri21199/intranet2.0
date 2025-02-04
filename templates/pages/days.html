@@ -3,13 +3,13 @@
 {% block title %}Solicitar día{% endblock %}
 
 {% block content %}
-<div class="containerDays">
-    <div class="containerTitleDays">
+<div class="homeDays">
+    <div class="titleDays">
         <h2>Solicitar Día</h2>
     </div>
-    <div class="containerFormTable">
-        {% include 'components/formDays.html' %}
-        {% include 'components/tableDays.html' %}
+    <div class="containerDays">
+        {% include 'components/days/formDays.html' %}
+        {% include 'components/days/tableDays.html' %}
     </div>
 </div>
 {% endblock %}

@@ -2,12 +2,12 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 <div class="containerDashboard">
-    <div class="containerTitleDashboard">
+    <div class="titleDashboard">
         <h2>📂 WMMS Intranet</h2>
     </div>
-    <div class="containerInfoDashboard">
-        {% include 'components/leftSectionDashboard.html' %}
-        {% include 'components/rightSectionDashboard.html' %}
+    <div class="homeDashboard">
+        {% include 'components/dashboard/leftDash.html' %}
+        {% include 'components/dashboard/rightDash.html' %}
     </div>
 </div>
 {% endblock %}

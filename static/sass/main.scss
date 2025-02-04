@@ -1,19 +1,32 @@
+
 @use './base/variables';
+
+@use './components/dashboard/titleDash';
+@use './components/dashboard/homeDash';
+
+@use './components/days/formDays';
+@use './components/days/tableDays';
+@use './components/days/titleDays';
+
+@use './components/documents/sidebarDocuments';
+@use './components/documents/mainDocuments';
+@use './components/documents/titleDocuments';
+
+@use './components/employees/cardEmployee';
+@use './components/employees/dashEmployee';
+@use './components/employees/employeesHome';
+@use './components/employees/selectEmployees';
+@use './components/employees/titleEmployees';
+
+@use './components/login/loginSection';
+@use './components/login/welcomeSection';
+
+@use './components/rooms/formRoom';
+@use './components/rooms/tableRoom';
+@use './components/rooms/titleRoom';
+
 @use './components/sidebar';
-@use './components/containerOwn';
-@use './components/containerInfoDashboard';
-@use './components/containerEmployees';
-@use './components/formDays';
-@use './components/formRoom';
-@use './components/formEmployees';
-@use './components/containerInfoEmployees';
-@use './components/cardEmployees';
-@use './components/tableDays';
-@use './components/tableRoom';
-@use './components/loginSection';
-@use './components/welcomeSection';
-@use './components/sidebarDocuments';
-@use './components/mainDocuments';
+
 @use './pages/days';
 @use './pages/rooms';
 @use './pages/dashboard';
@@ -40,3 +53,100 @@ body{
     user-select: none;
     overflow-x: hidden;
 }
+
+.containerOwn{
+
+    display: flex;
+    width: 100%;
+    margin: 0;
+/*     gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem; */
+
+    a{
+        color: variables.$color-dark;
+    }
+
+    img{
+        display: block;
+        width: 100%;
+    }
+
+    .profile-photo{
+        width: 2.8rem;
+        height: 2.8rem;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+
+    .text-muted{
+        color: variables.$color-info-dark;
+    }
+
+    p{
+        color: variables.$color-dark-variant;
+    }
+
+    b{
+        color: variables.$color-dark;
+    }
+
+    .primary{
+        color: variables.$color-primary;
+    }
+
+    .danger{
+        color: variables.$color-danger;
+    }
+
+    .success{
+        color: variables.$color-success;
+    }
+
+    .warning{
+        color: variables.$color-warning;
+    }
+
+    h1, h2, h3, h4, h5, h6{
+        margin: 0;
+    }
+
+    h1{
+        font-weight: 800;
+        font-size: 1.8rem;
+    }
+
+    h2{
+        font-size: 1.4rem;
+    }
+
+    h3{
+        font-size: 0.87rem;
+    }
+
+    h4{
+        font-size: 0.8rem;
+    }
+
+    h5{
+        font-size: 0.77rem;
+    }
+
+    small{
+        font-size: 0.75rem;
+    }
+
+}
+
+@media screen and (max-width: 1200px){
+    .containerOwn{
+        width: 94%;
+        grid-template-columns: 7rem auto 23rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .containerOwn{
+        width: 100%;
+    }
+}
+

@@ -3,13 +3,13 @@
 {% block title %}Documentos{% endblock %}
 
 {% block content %}
-<div class="containerDocuments">
-    <div class="containerTitleDocuments">
+<div class="homeDocs">
+    <div class="titleDocs">
         <h2>Documentos</h2>
     </div>
-    <div class="containerFormTable">
-        {% include 'components/sidebarDocuments.html' %}
-        {% include 'components/listDocuments.html' %}
+    <div class="containerDocs">
+        {% include 'components/documents/sidebarDocs.html' %}
+        {% include 'components/documents/listDocs.html' %}
     </div>
 </div>
 {% endblock %}
