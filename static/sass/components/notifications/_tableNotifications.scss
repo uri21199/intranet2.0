@@ -1,0 +1,64 @@
+.tableNotifications {
+    margin-top: 1rem;
+    margin-left: 1.2rem;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .actions {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .btn {
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+    .mark-read {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .table th, .table td {
+        padding: 12px;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+    .table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+    .status {
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+    }
+    .unread {
+        background-color: #ffdddd;
+        color: #d9534f;
+    }
+    .read {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    .btn-action {
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: none;
+    }
+    .delete {
+        background-color: #f44336;
+        color: white;
+    }
+    .read-btn {
+        background-color: #007bff;
+        color: white;
+    }
+}

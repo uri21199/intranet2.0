@@ -3,159 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Empleado</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Notificaciones - WMMS Intranet</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-        header {
-            background-color: #6c7a89;
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        nav button {
-            background-color: #ff5722;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .info-empleado {
-            background: white;
+        body {
+            background-color: #f8f8f8;
             padding: 20px;
-            margin: 20px;
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
         }
-        .area-empleado {
-            display: flex;
-            justify-content: space-between;
-        }
-        .area-empleado select {
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .perfil-empleado {
-            display: flex;
-            align-items: center;
-            margin-top: 15px;
-        }
-        .perfil-empleado img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            margin-right: 15px;
-        }
-        .estado-activo {
-            color: red;
-        }
-        .dashboard {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            padding: 20px;
-            justify-content: space-between;
-        }
-        .card {
+        .header {
             background: white;
             padding: 15px;
-            border-radius: 10px;
-            flex: 1;
-            min-width: 300px;
-        }
-        .pendiente {
-            color: orange;
-        }
-        .aprobado {
-            color: green;
-        }
-        .finalizado {
-            color: blue;
-        }
-        .monto {
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            font-size: 24px;
             font-weight: bold;
         }
-        .descargar {
-            background-color: #ff5722;
-            color: white;
+        .container {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .btn {
             padding: 10px 15px;
+            border-radius: 5px;
             border: none;
             cursor: pointer;
-            display: block;
-            margin: 20px auto;
+        }
+        .mark-read {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table th, .table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        .status {
+            padding: 5px 10px;
             border-radius: 5px;
+            font-weight: bold;
+        }
+        .unread {
+            background-color: #ffdddd;
+            color: #d9534f;
+        }
+        .read {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .btn-action {
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+        .delete {
+            background-color: #f44336;
+            color: white;
+        }
+        .read-btn {
+            background-color: #007bff;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>WMMS</h1>
-        <nav>
-            <button class="btn-empleados">Empleados</button>
-            <button class="btn-areas">Áreas</button>
-        </nav>
-    </header>
-    <main>
-        <section class="info-empleado">
-            <div class="area-empleado">
-                <label><strong>Área:</strong>
-                    <select>
-                        <option>Recursos Humanos</option>
-                        <option>Ventas</option>
-                        <option>IT</option>
-                    </select>
-                </label>
-                <label><strong>Empleado:</strong>
-                    <select>
-                        <option>María López</option>
-                        <option>Juan Pérez</option>
-                    </select>
-                </label>
-            </div>
-            <div class="perfil-empleado">
-                <img src="profile.jpg" alt="María López">
-                <div class="info">
-                    <h2>María López</h2>
-                    <p><strong>Cargo:</strong> Gerente de Recursos Humanos</p>
-                    <p><strong>Área:</strong> Recursos Humanos</p>
-                    <p class="estado-activo">Estado: Activo</p>
-                </div>
-            </div>
-        </section>
-        <section class="dashboard">
-            <div class="card">
-                <h3>Días Solicitados</h3>
-                <p>15/10/2023 - Vacaciones <span class="pendiente">Pendiente</span></p>
-                <p>20/10/2023 - Home <span class="aprobado">Aprobado</span></p>
-            </div>
-            <div class="card">
-                <h3>Capacitaciones</h3>
-                <p>Liderazgo Efectivo <span class="finalizado">Finalizado</span></p>
-                <p>Gestión de Equipos <span class="pendiente">Pendiente</span></p>
-            </div>
-            <div class="card">
-                <h3>Reservas de Sala</h3>
-                <p>22/10/2023 - Sala A <span class="reservada">Reservada</span></p>
-                <p>25/10/2023 - Sala B <span class="pendiente">Pendiente</span></p>
-            </div>
-            <div class="card">
-                <h3>Recibos de Sueldo</h3>
-                <p>Septiembre 2023 <span class="monto">$3,200 <i class="fas fa-download"></i></span></p>
-                <p>Agosto 2023 <span class="monto">$3,150 <i class="fas fa-download"></i></span></p>
-            </div>
-        </section>
-        <button class="descargar">Descargar Reportes</button>
-    </main>
+    <div class="header">🔔 Notificaciones</div>
+    <div class="container">
+        <div class="actions">
+            <button class="btn mark-read">Marcar todas como leídas</button>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Mensaje</th>
+                    <th>Estado</th>
+                    <th>Tiempo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Importante</td>
+                    <td>Tu solicitud de vacaciones ha sido aprobada.</td>
+                    <td><span class="status unread">No leído</span></td>
+                    <td>Hace 2 horas</td>
+                    <td>
+                        <button class="btn-action read-btn">✔</button>
+                        <button class="btn-action delete">🗑</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sistema</td>
+                    <td>Tu contraseña ha sido cambiada exitosamente.</td>
+                    <td><span class="status read">Leído</span></td>
+                    <td>Hace 1 día</td>
+                    <td>
+                        <button class="btn-action delete">🗑</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

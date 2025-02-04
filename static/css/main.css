@@ -698,6 +698,87 @@
   flex: 1.5;
 }
 
+.tableNotifications {
+  margin-top: 1rem;
+  margin-left: 1.2rem;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.tableNotifications .actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.tableNotifications .btn {
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.tableNotifications .mark-read {
+  background-color: #4CAF50;
+  color: white;
+}
+.tableNotifications .table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tableNotifications .table th, .tableNotifications .table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+.tableNotifications .table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+.tableNotifications .status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.tableNotifications .unread {
+  background-color: #ffdddd;
+  color: #d9534f;
+}
+.tableNotifications .read {
+  background-color: #d4edda;
+  color: #155724;
+}
+.tableNotifications .btn-action {
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+.tableNotifications .delete {
+  background-color: #f44336;
+  color: white;
+}
+.tableNotifications .read-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+.titleNotifications {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.7rem;
+  background-color: #fff;
+  /* background-color: red; */
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+.titleNotifications h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  padding-left: 0.3rem;
+}
+
 .containerFormRoom {
   background: white;
   padding: 25px;
@@ -1130,6 +1211,15 @@ aside .sidebar .message-count {
   transition: margin-left 0.3s ease;
 }
 .homeSettings .containerSettings {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.homeNotifications {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+.homeNotifications .containerNotifications {
   display: flex;
   margin-top: 2rem;
 }

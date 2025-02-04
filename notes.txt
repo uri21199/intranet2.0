@@ -1,0 +1,11 @@
+nico Martino no puede entrar a la intranet
+Excel recursos
+Boca2025** 
+FEEEHHSI4X7QTXOG
+
+30/1: armar tabla de contacto-clientes
+armar tabla para registrar empleados que solicitaron asistencia al viajero
+armar tabla para registrar motivos de ausencia/examen para que en el form sea un desplegable
+Es mejor el form y tabla uno al lado del otro?
+
+2/2: ya esta el front de days, dashboard, documents, employees, myteam, rooms, settings

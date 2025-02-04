@@ -24,6 +24,9 @@
 @use './components/myteam/titleMyTeam';
 @use './components/myteam/homeMyTeam';
 
+@use './components/notifications/tableNotifications';
+@use './components/notifications/titleNotifications';
+
 @use './components/rooms/formRoom';
 @use './components/rooms/tableRoom';
 @use './components/rooms/titleRoom';
@@ -41,6 +44,7 @@
 @use './pages/employees';
 @use './pages/myteam';
 @use './pages/settings';
+@use './pages/notifications';
 *{
     margin: 0;
     padding: 0;

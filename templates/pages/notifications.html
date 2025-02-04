@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Notificaciones{% endblock %}
+
+{% block content %}
+<div class="homeNotifications">
+    <div class="titleNotifications">
+        <h2>Notificaciones</h2>
+    </div>
+    <div class="containerNotifications">
+        {% include 'components/notifications/tableNotifications.html' %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/formDays.js') }}"></script>
+{% endblock %}
+
