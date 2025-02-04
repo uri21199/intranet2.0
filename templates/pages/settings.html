@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Configuración{% endblock %}
+
+{% block content %}
+<div class="homeSettings">
+    <div class="titleSettings">
+        <h2>Configuración</h2>
+    </div>
+    <div class="containerSettings">
+        {% include 'components/settings/formSettings.html' %}
+    </div>
+</div>
+{% endblock %}

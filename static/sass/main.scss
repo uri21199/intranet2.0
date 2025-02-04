@@ -28,6 +28,9 @@
 @use './components/rooms/tableRoom';
 @use './components/rooms/titleRoom';
 
+@use './components/settings/formSettings';
+@use './components/settings/titleSettings';
+
 @use './components/sidebar';
 
 @use './pages/days';
@@ -37,6 +40,7 @@
 @use './pages/documents';
 @use './pages/employees';
 @use './pages/myteam';
+@use './pages/settings';
 *{
     margin: 0;
     padding: 0;
