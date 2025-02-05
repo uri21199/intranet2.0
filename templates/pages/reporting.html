@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Reportes{% endblock %}
+
+{% block content %}
+<div class="homeReporting">
+    <div class="titleReporting">
+        <h2>Reportes</h2>
+    </div>
+    <div class="containerReporting">
+        {% include 'components/reporting/formReporting.html' %}
+        {% include 'components/reporting/tableReporting.html' %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/reporting.js') }}"></script>
+{% endblock %}
+

@@ -37,6 +37,10 @@
 @use './components/payroll/tablePayroll';
 @use './components/payroll/titlePayroll';
 
+@use './components/reporting/formReporting';
+@use './components/reporting/tableReporting';
+@use './components/reporting/titleReporting';
+
 @use './components/sidebar';
 
 @use './pages/days';
@@ -49,6 +53,7 @@
 @use './pages/settings';
 @use './pages/notifications';
 @use './pages/payroll';
+@use './pages/reporting';
 *{
     margin: 0;
     padding: 0;
