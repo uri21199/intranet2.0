@@ -1,0 +1,43 @@
+.tablePayroll {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .payroll-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    .payroll-table th, .payroll-table td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+    .payroll-table th {
+        background-color: #f5f5f5;
+        font-weight: bold;
+    }
+    .payroll-table button {
+        background-color: #ff6600;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .faq {
+        margin-top: 30px;
+    }
+    .faq h2 {
+        margin-bottom: 15px;
+    }
+    .faq-item {
+        background: #f5f5f5;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+}

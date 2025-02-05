@@ -979,6 +979,66 @@
   padding-left: 0.3rem;
 }
 
+.tablePayroll {
+  max-width: 1200px;
+  margin: 20px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.tablePayroll .payroll-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.tablePayroll .payroll-table th, .tablePayroll .payroll-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+.tablePayroll .payroll-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+.tablePayroll .payroll-table button {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.tablePayroll .faq {
+  margin-top: 30px;
+}
+.tablePayroll .faq h2 {
+  margin-bottom: 15px;
+}
+.tablePayroll .faq-item {
+  background: #f5f5f5;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.titlePayroll {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.7rem;
+  background-color: #fff;
+  /* background-color: red; */
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+.titlePayroll h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  padding-left: 0.3rem;
+}
+
 aside {
   height: 100vh;
   width: 13rem;
@@ -1220,6 +1280,15 @@ aside .sidebar .message-count {
   transition: margin-left 0.3s ease;
 }
 .homeNotifications .containerNotifications {
+  display: flex;
+  margin-top: 2rem;
+}
+
+.homePayroll {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+.homePayroll .containerPayroll {
   display: flex;
   margin-top: 2rem;
 }

@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Recibos de sueldo{% endblock %}
+
+{% block content %}
+<div class="homePayroll">
+    <div class="titlePayroll">
+        <h2>Recibos de sueldo</h2>
+    </div>
+    <div class="containerPayroll">
+        {% include 'components/payroll/tablePayroll.html' %}
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/formDays.js') }}"></script>
+{% endblock %}
+

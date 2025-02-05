@@ -34,6 +34,9 @@
 @use './components/settings/formSettings';
 @use './components/settings/titleSettings';
 
+@use './components/payroll/tablePayroll';
+@use './components/payroll/titlePayroll';
+
 @use './components/sidebar';
 
 @use './pages/days';
@@ -45,6 +48,7 @@
 @use './pages/myteam';
 @use './pages/settings';
 @use './pages/notifications';
+@use './pages/payroll';
 *{
     margin: 0;
     padding: 0;
