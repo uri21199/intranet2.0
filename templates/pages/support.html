@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Soporte{% endblock %}
+
+{% block content %}
+<div class="homeSupport">
+    <div class="titleSupport">
+        <h2>🛠 Soporte</h2>
+    </div>
+    <div class="containerSupport">
+        {% include 'components/support/formSupport.html' %}
+        {% include 'components/support/tableSupport.html' %}
+    </div>
+    {% include 'components/support/panelSupport.html' %}
+</div>
+{% endblock %}

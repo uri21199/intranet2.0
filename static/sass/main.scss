@@ -41,6 +41,11 @@
 @use './components/reporting/tableReporting';
 @use './components/reporting/titleReporting';
 
+@use './components/support/formSupport';
+@use './components/support/tableSupport';
+@use './components/support/panelSupport';
+@use './components/support/titleSupport';
+
 @use './components/sidebar';
 
 @use './pages/days';
@@ -54,6 +59,7 @@
 @use './pages/notifications';
 @use './pages/payroll';
 @use './pages/reporting';
+@use './pages/support';
 *{
     margin: 0;
     padding: 0;

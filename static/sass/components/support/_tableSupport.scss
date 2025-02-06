@@ -1,0 +1,45 @@
+@use '../../base/variables';
+
+.tableSupport {
+    flex: 2;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .table th, .table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+    .table th {
+        background: #f4f4f4;
+        font-weight: bold;
+    }
+
+    button {
+        background-color: variables.$color-orange-wmms-focus;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 12px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px; /* Espaciado entre icono y texto */
+        transition: all 0.3s ease-in-out;
+    }
+    
+    button:hover, button:focus {
+        background-color: #e65b2a;
+        box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+        outline: 2px solid variables.$color-orange-wmms-focus;
+    }
+}

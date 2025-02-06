@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reportes - WMMS Intranet</title>
+    <title>Soporte - WMMS Intranet</title>
     <style>
         * {
             margin: 0;
@@ -25,18 +25,27 @@
         }
         .container {
             display: flex;
+            flex-direction: column;
             gap: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
-        .sidebar {
+        .form-table-container {
+            display: flex;
+            gap: 20px;
+        }
+        .form-container {
             flex: 1;
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .content {
-            flex: 3;
+        .table-container {
+            flex: 2;
             background: white;
             padding: 20px;
             border-radius: 10px;
@@ -47,24 +56,18 @@
         }
         label {
             font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
         }
-        select, input {
+        select, input, textarea, button {
             width: 100%;
             padding: 10px;
+            margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
         .button {
             background-color: #ff5733;
             color: white;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
             cursor: pointer;
-            display: block;
-            width: 100%;
             border: none;
         }
         .button:hover {
@@ -73,7 +76,6 @@
         .table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
         .table th, .table td {
             border: 1px solid #ccc;
@@ -84,70 +86,81 @@
             background: #f4f4f4;
             font-weight: bold;
         }
+        .status-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
-    <div class="header">📊 Reportes - WMMS Intranet</div>
+    <div class="header">🛠 Soporte - WMMS Intranet</div>
     <div class="container">
-        <div class="sidebar">
-            <h3>Filtros</h3>
-            <div class="form-group">
-                <label for="reportType">Tipo de Reporte</label>
-                <select id="reportType">
-                    <option value="employees_status">Empleados Activos/Inactivos</option>
-                    <option value="requested_days">Historial de Días Solicitados</option>
-                    <option value="trainings">Capacitaciones Completadas</option>
-                    <option>Listado de Capacitaciones</option>
-                    <option>Historial de Recibos de Sueldo</option>
-                    <option>Asignación de Equipos</option>
-                    <option>Historial de Reservas de Salas</option>
-                    <option>Versionado de Documentos</option>
-                    <option>Historial de Cambios en Permisos</option>
-                    <option>Historial de Accesos y Logins</option>
-                    <option>Reporte de Tickets de Soporte</option>
-                </select>
+        <div class="form-table-container">
+            <div class="form-container">
+                <h2>Reportar un Problema</h2>
+                <div class="form-group">
+                    <label for="category">Categoría</label>
+                    <select id="category">
+                        <option value="">Seleccione...</option>
+                        <option value="sistemas">Sistemas</option>
+                        <option value="equipo_fisico">Equipo Físico</option>
+                        <option value="virus">Posible Virus</option>
+                        <option value="requerimientos">Requerimientos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea id="description" rows="4"></textarea>
+                </div>
+                <button class="button">Enviar Ticket</button>
             </div>
-            <div class="form-group hidden" id="filterTypeContainer">
-                <label for="filterType">Seleccione el filtro:</label>
-                <select id="filterType" onchange="updateSubFilters()">
-                    <option value="none">Sin filtro</option>
-                    <option value="area">Empleados de un área</option>
-                    <option value="day_type">Por tipo de día</option>
-                    <option value="role">Por rol</option>
-                    <option value="status">Por estado</option>
-                </select>
-                
+            
+            <div class="table-container">
+                <h2>Historial de Tickets</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Categoría</th>
+                            <th>Descripción</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Sistemas</td>
+                            <td>Problema de acceso</td>
+                            <td>Pendiente</td>
+                            <td><button class="button">Ver</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-    
-            <div class="form-group hidden" id="subFilterContainer">
-                <label for="subFilter">Seleccione una opción:</label>
-                <select id="subFilter">
-                </select>
-            </div>
-    
-            <div class="form-group">
-                <label for="dateRange">Rango de Fechas</label>
-                <input type="date" id="startDate"> - <input type="date" id="endDate">
-            </div>
-            <button class="button">Generar Reporte</button>
         </div>
-        <div class="content">
-            <h3>Resultados del Reporte</h3>
+        
+        <div class="status-panel">
+            <h2>Panel de Estado para IT</h2>
             <table class="table">
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>Categoría</th>
                         <th>Descripción</th>
-                        <th>Fecha</th>
-                        <th>Acción</th>
+                        <th>Estado</th>
+                        <th>Asignado a</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
-                        <td>Ejemplo de Reporte</td>
-                        <td>01/02/2025</td>
-                        <td><button class="button">Descargar</button></td>
+                        <td>5</td>
+                        <td>Equipo Físico</td>
+                        <td>Fallo en laptop</td>
+                        <td>En proceso</td>
+                        <td>Juan Pérez</td>
                     </tr>
                 </tbody>
             </table>
@@ -155,106 +168,3 @@
     </div>
 </body>
 </html>
-<script>
-function updateFilters() {
-    const reportType = document.getElementById("reportType").value;
-    const filterTypeContainer = document.getElementById("filterTypeContainer");
-    const filterType = document.getElementById("filterType");
-    const subFilterContainer = document.getElementById("subFilterContainer");
-    const subFilter = document.getElementById("subFilter");
-
-    // Limpiar valores anteriores
-    filterType.innerHTML = "";
-    subFilter.innerHTML = "";
-    subFilterContainer.classList.add("hidden");
-
-    if (!reportType) {
-        filterTypeContainer.classList.add("hidden");
-        return;
-    }
-
-    let filters = [];
-    
-    if (reportType === "employees_status") {
-        filters = [
-            { value: "none", text: "Sin filtro" },
-            { value: "active", text: "Empleados activos" },
-            { value: "inactive", text: "Empleados inactivos" },
-            { value: "area", text: "Empleados de un área" }
-        ];
-    } else if (reportType === "requested_days") {
-        filters = [
-            { value: "none", text: "Sin filtro" },
-            { value: "area", text: "Empleados de un área" },
-            { value: "day_type", text: "Por tipo de día" }
-        ];
-    } else if (reportType === "trainings") {
-        filters = [
-            { value: "none", text: "Sin filtro" },
-            { value: "area", text: "Capacitaciones por área" },
-            { value: "role", text: "Por rol" },
-            { value: "status", text: "Por estado" }
-        ];
-    }
-
-    filters.forEach(option => {
-        let opt = document.createElement("option");
-        opt.value = option.value;
-        opt.textContent = option.text;
-        filterType.appendChild(opt);
-    });
-
-    filterTypeContainer.classList.remove("hidden");
-}
-
-function updateSubFilters() {
-    const filterType = document.getElementById("filterType").value;
-    const subFilterContainer = document.getElementById("subFilterContainer");
-    const subFilter = document.getElementById("subFilter");
-
-    subFilter.innerHTML = "";
-    
-    let subFilters = [];
-
-    if (filterType === "area") {
-        subFilters = [
-            { value: "HR", text: "Recursos Humanos" },
-            { value: "IT", text: "IT" },
-            { value: "Finance", text: "Finanzas" }
-        ];
-    } else if (filterType === "day_type") {
-        subFilters = [
-            { value: "vacaciones", text: "Vacaciones" },
-            { value: "ausencia", text: "Ausencia" },
-            { value: "home_office", text: "Home Office" }
-        ];
-    } else if (filterType === "role") {
-        subFilters = [
-            { value: "admin", text: "Administrador" },
-            { value: "supervisor", text: "Supervisor" },
-            { value: "empleado", text: "Empleado" }
-        ];
-    } else if (filterType === "status") {
-        subFilters = [
-            { value: "completado", text: "Completado" },
-            { value: "pendiente", text: "Pendiente" }
-        ];
-    } else {
-        subFilterContainer.classList.add("hidden");
-        return;
-    }
-
-    subFilters.forEach(option => {
-        let opt = document.createElement("option");
-        opt.value = option.value;
-        opt.textContent = option.text;
-        subFilter.appendChild(opt);
-    });
-
-    subFilterContainer.classList.remove("hidden");
-}
-
-    function generateReport() {
-        alert("Generando reporte...");
-    }
-</script>
