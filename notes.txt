@@ -8,4 +8,6 @@ armar tabla para registrar empleados que solicitaron asistencia al viajero
 armar tabla para registrar motivos de ausencia/examen para que en el form sea un desplegable
 Es mejor el form y tabla uno al lado del otro?
 
-2/2: ya esta el front de days, dashboard, documents, employees, myteam, rooms, settings
+2/2: ya esta el front de admin, dashboard, days, documents, employees, myteam, notifications, payroll, reporting, rooms, settings, support, surveys, trainings
+
+

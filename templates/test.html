@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soporte - WMMS Intranet</title>
+    <title>Administración - WMMS Intranet</title>
     <style>
         * {
             margin: 0;
@@ -25,31 +25,17 @@
         }
         .container {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
             gap: 20px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
-        .form-table-container {
-            display: flex;
-            gap: 20px;
-        }
-        .form-container {
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             flex: 1;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .table-container {
-            flex: 2;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-width: 300px;
         }
         .form-group {
             margin-bottom: 15px;
@@ -57,113 +43,79 @@
         label {
             font-weight: bold;
         }
-        select, input, textarea, button {
+        select, input, button {
             width: 100%;
             padding: 10px;
             margin-top: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-        .button {
-            background-color: #ff5733;
-            color: white;
-            cursor: pointer;
-            border: none;
+        .dashboard {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
         }
-        .button:hover {
-            background-color: #e64a19;
-        }
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .table th, .table td {
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: left;
-        }
-        .table th {
-            background: #f4f4f4;
-            font-weight: bold;
-        }
-        .status-panel {
+        .dashboard-card {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="header">🛠 Soporte - WMMS Intranet</div>
+    <div class="header">⚙️ Administración - WMMS Intranet</div>
+    
+    <div class="dashboard">
+        <div class="dashboard-card">Empleados Activos: <span id="activeEmployees">120</span></div>
+        <div class="dashboard-card">Tickets Abiertos: <span id="openTickets">15</span></div>
+        <div class="dashboard-card">Salas Ocupadas: <span id="occupiedRooms">3</span></div>
+    </div>
+    
     <div class="container">
-        <div class="form-table-container">
-            <div class="form-container">
-                <h2>Reportar un Problema</h2>
-                <div class="form-group">
-                    <label for="category">Categoría</label>
-                    <select id="category">
-                        <option value="">Seleccione...</option>
-                        <option value="sistemas">Sistemas</option>
-                        <option value="equipo_fisico">Equipo Físico</option>
-                        <option value="virus">Posible Virus</option>
-                        <option value="requerimientos">Requerimientos</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="description">Descripción</label>
-                    <textarea id="description" rows="4"></textarea>
-                </div>
-                <button class="button">Enviar Ticket</button>
+        <div class="section">
+            <h2>Gestión de Usuarios</h2>
+            <div class="form-group">
+                <label for="employee">Seleccionar Empleado:</label>
+                <select id="employee">
+                    <option value="">Seleccione...</option>
+                    <option value="1">Juan Pérez</option>
+                    <option value="2">María Gómez</option>
+                </select>
             </div>
-            
-            <div class="table-container">
-                <h2>Historial de Tickets</h2>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Categoría</th>
-                            <th>Descripción</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Sistemas</td>
-                            <td>Problema de acceso</td>
-                            <td>Pendiente</td>
-                            <td><button class="button">Ver</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <button>Activar/Desactivar Usuario</button>
+            <button>Restablecer Contraseña</button>
         </div>
         
-        <div class="status-panel">
-            <h2>Panel de Estado para IT</h2>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Categoría</th>
-                        <th>Descripción</th>
-                        <th>Estado</th>
-                        <th>Asignado a</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>5</td>
-                        <td>Equipo Físico</td>
-                        <td>Fallo en laptop</td>
-                        <td>En proceso</td>
-                        <td>Juan Pérez</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="section">
+            <h2>Gestión de Tipos de Días</h2>
+            <div class="form-group">
+                <label for="dayType">Seleccionar Tipo de Día:</label>
+                <select id="dayType">
+                    <option value="">Seleccione...</option>
+                    <option value="vacaciones">Vacaciones</option>
+                    <option value="ausencia">Ausencia</option>
+                    <option value="home_office">Home Office</option>
+                </select>
+            </div>
+            <button>Activar/Desactivar Tipo de Día</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="section">
+            <h2>Gestión de Permisos y Roles</h2>
+            <button>Administrar Roles</button>
+            <button>Administrar Permisos</button>
+        </div>
+        
+        <div class="section">
+            <h2>Configuración General</h2>
+            <button>Bloquear Fechas para Vacaciones</button>
+            <button>Configurar Horarios de Salas</button>
         </div>
     </div>
 </body>
