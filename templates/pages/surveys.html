@@ -1,0 +1,17 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Encuestas{% endblock %}
+
+{% block content %}
+<div class="homeSurveys">
+    <div class="titleSurveys">
+        <h2>🛠 Encuestas</h2>
+    </div>
+    <div class="containerSurveys">
+        {% include 'components/surveys/formSurveys.html' %}
+        {% include 'components/surveys/tableSurveys.html' %}
+    </div>
+    {% include 'components/surveys/summarySurveys.html' %}
+    {% include 'components/surveys/historySurveys.html' %}
+</div>
+{% endblock %}

@@ -46,6 +46,12 @@
 @use './components/support/panelSupport';
 @use './components/support/titleSupport';
 
+@use './components/surveys/formSurveys';
+@use './components/surveys/historySurveys';
+@use './components/surveys/summarySurveys';
+@use './components/surveys/tableSurveys';
+@use './components/surveys/titleSurveys';
+
 @use './components/sidebar';
 
 @use './pages/days';
@@ -60,6 +66,7 @@
 @use './pages/payroll';
 @use './pages/reporting';
 @use './pages/support';
+@use './pages/surveys';
 *{
     margin: 0;
     padding: 0;
