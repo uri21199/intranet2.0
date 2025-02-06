@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}Capacitaciones{% endblock %}
+
+{% block content %}
+<div class="homeTrainings">
+    <div class="titleTrainings">
+        <h2>📚 Capacitaciones</h2>
+    </div>
+    <div class="containerTrainings">
+        {% include 'components/trainings/formTrainings.html' %}
+        {% include 'components/trainings/tableTrainings.html' %}
+    </div>
+</div>
+{% endblock %}

@@ -52,6 +52,10 @@
 @use './components/surveys/tableSurveys';
 @use './components/surveys/titleSurveys';
 
+@use './components/trainings/formTrainings';
+@use './components/trainings/tableTrainings';
+@use './components/trainings/titleTrainings';
+
 @use './components/sidebar';
 
 @use './pages/days';
@@ -67,6 +71,7 @@
 @use './pages/reporting';
 @use './pages/support';
 @use './pages/surveys';
+@use './pages/trainings';
 *{
     margin: 0;
     padding: 0;

@@ -1432,6 +1432,107 @@
   padding-left: 0.3rem;
 }
 
+.formTrainings {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 1;
+}
+.formTrainings .form-group {
+  margin-bottom: 15px;
+}
+.formTrainings label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+.formTrainings input, .formTrainings select, .formTrainings button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.formTrainings button {
+  background-color: #ff6b35;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaciado entre icono y texto */
+  transition: all 0.3s ease-in-out;
+}
+.formTrainings button:hover, .formTrainings button:focus {
+  background-color: #e65b2a;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+  outline: 2px solid #ff6b35;
+}
+
+.tableTrainings {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex: 2;
+}
+.tableTrainings table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.tableTrainings th, .tableTrainings td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+.tableTrainings th {
+  background-color: #f4f4f4;
+}
+.tableTrainings button {
+  background-color: #ff6b35;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Espaciado entre icono y texto */
+  transition: all 0.3s ease-in-out;
+}
+.tableTrainings button:hover, .tableTrainings button:focus {
+  background-color: #e65b2a;
+  box-shadow: 0 4px 10px rgba(255, 107, 53, 0.3);
+  outline: 2px solid #ff6b35;
+}
+
+.titleTrainings {
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0.7rem;
+  background-color: #fff;
+  /* background-color: red; */
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+}
+.titleTrainings h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  padding-left: 0.3rem;
+}
+
 aside {
   height: 100vh;
   width: 13rem;
@@ -1716,6 +1817,18 @@ aside .sidebar .message-count {
   margin: 2rem;
 }
 .homeSurveys .containerSurveys div {
+  margin: 2rem;
+}
+
+.homeTrainings {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+.homeTrainings .containerTrainings {
+  display: flex;
+  margin: 2rem;
+}
+.homeTrainings .containerTrainings div {
   margin: 2rem;
 }
 
