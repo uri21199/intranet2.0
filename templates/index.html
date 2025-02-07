@@ -12,12 +12,13 @@
     <div class="containerLogin">
         <div class="loginSection">
             <h2>Iniciar sesión</h2>
-            <form action="#" class="loginForm">
-                <input type="email" placeholder="Ingrese su correo electrónico">
-                <input type="password" placeholder="Ingrese su contraseña">
+            <form id="loginForm" class="loginForm">
+                <input type="email" id="email" placeholder="Ingrese su correo electrónico" required>
+                <input type="password" id="password" placeholder="Ingrese su contraseña" required>
                 <a href="#">Olvidé mi contraseña</a>
-                <button>Iniciar sesión</button>
+                <button type="submit">Iniciar sesión</button>
             </form>
+            <p id="loginMessage" style="color: red; display: none;"></p>
         </div>
         <div class="welcomeSection">
             <div class="logo">⭐ WMMS</div>
@@ -25,5 +26,42 @@
             <p>Accede con tu usuario y descubre todas las funciones disponibles.</p>
         </div>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("loginForm").addEventListener("submit", async function (event) {
+                event.preventDefault(); // Evita recargar la página
+    
+                let email = document.getElementById("email").value;
+                let password = document.getElementById("password").value;
+                let loginMessage = document.getElementById("loginMessage");
+    
+                try {
+                    let response = await fetch("/auth/login", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
+    
+                    let result = await response.json();
+                    console.log("Respuesta del servidor:", result);
+    
+                    if (response.status === 200 && result.redirect) {
+                        console.log("✅ Redirigiendo a:", result.redirect);
+                        window.location.href = result.redirect;  // Redirige al dashboard
+                    } else {
+                        loginMessage.textContent = result.message; // Muestra mensaje de error
+                        loginMessage.style.display = "block";
+                    }
+                } catch (error) {
+                    console.error("❌ Error en la autenticación:", error);
+                    loginMessage.textContent = "Error al conectar con el servidor.";
+                    loginMessage.style.display = "block";
+                }
+            });
+        });
+        </script>
 </body>
 </html>

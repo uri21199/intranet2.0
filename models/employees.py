@@ -17,7 +17,7 @@ class Employee(Base):
     email = Column(String(150), nullable=False, unique=True)
     phone = Column(String(20), nullable=True)
     state = Column(String(100), nullable=True)  # Provincia
-    city = Column(String(100), nullable=True)  # Localidad
+    city = Column(String(100), nullable=True)   # Localidad
     address = Column(String(100), nullable=True)
     union_agreement = Column(Boolean, default=True, nullable=False)  # Convenio
     health_insurance = Column(Boolean, default=True, nullable=False)  # Prepaga
@@ -27,4 +27,4 @@ class Employee(Base):
     updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
 
     # Relación con departamentos
-    department = relationship("Department", back_populates="employees")
+    department = relationship("Department", back_populates="employees")  # 📌 Esto corrige el error

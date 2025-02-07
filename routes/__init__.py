@@ -2,6 +2,7 @@ from flask import Blueprint
 
 # Importar los blueprints existentes
 from .admin_routes import admin_bp
+from routes.auth_routes import auth_bp
 from .dashboard_routes import dashboard_bp
 from .days_routes import days_bp
 from .documents_routes import documents_bp
@@ -20,8 +21,9 @@ from .main_routes import main_bp  # Agregamos la nueva ruta
 # Función para registrar todos los blueprints
 def register_blueprints(app):
     app.register_blueprint(main_bp)  # Agregamos el blueprint de index
+    app.register_blueprint(auth_bp, url_prefix='/auth') # Login/logout
     app.register_blueprint(admin_bp)
-    app.register_blueprint(dashboard_bp)
+    app.register_blueprint(dashboard_bp, url_prefix='/dashboard')  # Dashboard
     app.register_blueprint(days_bp)
     app.register_blueprint(documents_bp)
     app.register_blueprint(employees_bp)
