@@ -54,7 +54,7 @@ def before_request_handler():
 
                 roles = db.query(Role.name).filter(Role.id.in_(role_ids)).all()
                 session['roles'] = [r[0] for r in roles]  # Convertir a lista de nombres
-
+                print(f"esto son los roles guardados en before_request: {session['roles']}")
                 # Hacer los datos accesibles en `g` para el resto de la app
                 g.user = {
                     "id": session['user_id'],
