@@ -4,6 +4,9 @@ from sqlalchemy.exc import SQLAlchemyError
 from config import get_db
 from models.credentials import Credential
 from models.employees import Employee
+from models.departments import Department
+from models.employee_roles import EmployeeRole
+from models.roles import Role
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -32,13 +35,30 @@ def login():
         if not credential:
             print("❌ No hay credenciales registradas para este usuario.")
             return jsonify({"message": "Credenciales no registradas"}), 404
-        # Comparar contraseña en texto plano
-        print(f"🔍 Contraseña ingresada: {password}")
-        print(f"🔍 Contraseña en BD: {credential.password}")
+
         # Comparar contraseña en texto plano
         if credential.password == password:
+            # Obtener el nombre del departamento
+            department = db.query(Department).filter(Department.id == employee.department_id).first()
+            department_name = department.name if department else None
+
+            # Obtener los roles del usuario
+            role_ids = db.query(EmployeeRole.role_id).filter(EmployeeRole.employee_id == employee.id).all()
+            role_ids = [r[0] for r in role_ids]  # Convertir a una lista de IDs
+
+            roles = db.query(Role.name).filter(Role.id.in_(role_ids)).all()
+            role_names = [r[0] for r in roles]  # Convertir a lista de nombres
+
+            # Guardar en sesión
             session['user_id'] = employee.id
             session['email'] = email
+            session['first_name'] = employee.first_name
+            session['last_name'] = employee.last_name
+            session['department_id'] = employee.department_id
+            session['department_name'] = department_name
+            session['role_ids'] = role_ids
+            session['roles'] = role_names
+            print(f"Esto es el departamento y los roles: {session['department_name']} {session['roles']}")
             print(f"✅ Login exitoso para {email}, redirigiendo a /dashboard")
             return jsonify({"message": "Login exitoso", "redirect": url_for('dashboard.dashboard_home')}), 200
         else:
