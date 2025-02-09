@@ -10,7 +10,7 @@
 
     <div class="sidebar">
         {% for block in g.sidebar_blocks %}
-        <a href="{{ block.url }}">
+        <a href="{{ '/' + block.url }}">
             <span class="material-symbols-outlined">{{ block.icon }}</span>
             <h3>{{ block.name }}</h3>
         </a>

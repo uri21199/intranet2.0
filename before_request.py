@@ -10,19 +10,19 @@ from models.employee_roles import EmployeeRole
 # Definir qué roles pueden ver cada bloque
 SIDEBAR_BLOCKS = [
     {"name": "Administración", "icon": "admin_panel_settings", "url": "#", "roles": ["administrador general"]},
-    {"name": "Dashboard", "icon": "dashboard", "url": "#", "roles": ["operador"]},
-    {"name": "Días", "icon": "edit_calendar", "url": "#", "roles": ["operador"]},
-    {"name": "Documentos", "icon": "description", "url": "#", "roles": ["operador"]},
-    {"name": "Empleados", "icon": "groups", "url": "#", "roles": ["administrador general", "recursos humanos"]},
-    {"name": "Mi equipo", "icon": "group", "url": "#", "roles": ["jefe de area"]},
-    {"name": "Notificaciones", "icon": "notifications", "url": "#", "roles": ["operador"]},
-    {"name": "Recibo de sueldo", "icon": "receipt_long", "url": "#", "roles": ["operador"]},
-    {"name": "Reportes", "icon": "download", "url": "#", "roles": ["analista de datos"]},
-    {"name": "Salas", "icon": "room_preferences", "url": "#", "roles": ["organizador de reuniones"]},
-    {"name": "Configuración", "icon": "settings", "url": "#", "roles": ["operador"]},
-    {"name": "Soporte", "icon": "desktop_cloud_stack", "url": "#", "roles": ["operador"]},
-    {"name": "Encuestas", "icon": "mood", "url": "#", "roles": ["operador"]},
-    {"name": "Capacitaciones", "icon": "school", "url": "#", "roles": ["operador"]},
+    {"name": "Dashboard", "icon": "dashboard", "url": "dashboard", "roles": ["operador"]},
+    {"name": "Días", "icon": "edit_calendar", "url": "days", "roles": ["operador"]},
+    {"name": "Documentos", "icon": "description", "url": "documents", "roles": ["operador"]},
+    {"name": "Empleados", "icon": "groups", "url": "employees", "roles": ["administrador general", "recursos humanos"]},
+    {"name": "Mi equipo", "icon": "group", "url": "myteam", "roles": ["jefe de area"]},
+    {"name": "Notificaciones", "icon": "notifications", "url": "notifications", "roles": ["operador"]},
+    {"name": "Recibo de sueldo", "icon": "receipt_long", "url": "payroll", "roles": ["operador"]},
+    {"name": "Reportes", "icon": "download", "url": "reporting", "roles": ["analista de datos"]},
+    {"name": "Salas", "icon": "room_preferences", "url": "rooms", "roles": ["organizador de reuniones"]},
+    {"name": "Configuración", "icon": "settings", "url": "settings", "roles": ["operador"]},
+    {"name": "Soporte", "icon": "desktop_cloud_stack", "url": "support", "roles": ["operador"]},
+    {"name": "Encuestas", "icon": "mood", "url": "surveys", "roles": ["operador"]},
+    {"name": "Capacitaciones", "icon": "school", "url": "trainings", "roles": ["operador"]},
     # Agregá más bloques según los roles que existan
 ]
 
@@ -43,7 +43,7 @@ def before_request_handler():
                 session['last_name'] = employee.last_name
                 session['email'] = employee.email
                 session['department_id'] = employee.department_id
-
+                print(f"$$$$$$ {session['first_name']} {session['last_name']} {session['email']}")
                 # Obtener el nombre del departamento
                 department = db.query(Department).filter(Department.id == employee.department_id).first()
                 session['department_name'] = department.name if department else None
@@ -55,6 +55,7 @@ def before_request_handler():
                 roles = db.query(Role.name).filter(Role.id.in_(role_ids)).all()
                 session['roles'] = [r[0] for r in roles]  # Convertir a lista de nombres
                 print(f"esto son los roles guardados en before_request: {session['roles']}")
+                print(f"esto es el area: {session['department_name']}")
                 # Hacer los datos accesibles en `g` para el resto de la app
                 g.user = {
                     "id": session['user_id'],

@@ -9,9 +9,15 @@
     
     <div id="formFields">
         <label for="motivo">Motivo</label>
-        <input type="text" id="motivo" placeholder="Motivo">
+        <select id="motivo">
+            <option value="enfermedad">Enfermedad</option>
+            <option value="turno_medico">Turno médico</option>
+            <option value="mudanza">Mudanza</option>
+            <option value="problema_familiar">Problema familiar</option>
+            <option value="otro">Otro</option>
+        </select>
         <label for="fecha">Fecha</label>
-        <input type="date" id="fecha">
+        <input type="date" id="fecha" min="" max="">
     </div>
     
     <button type="submit">Enviar solicitud</button>
