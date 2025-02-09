@@ -6,6 +6,26 @@ from models.departments import Department
 from models.roles import Role
 from models.employee_roles import EmployeeRole
 
+
+# Definir qué roles pueden ver cada bloque
+SIDEBAR_BLOCKS = [
+    {"name": "Administración", "icon": "admin_panel_settings", "url": "#", "roles": ["administrador general"]},
+    {"name": "Dashboard", "icon": "dashboard", "url": "#", "roles": ["operador"]},
+    {"name": "Días", "icon": "edit_calendar", "url": "#", "roles": ["operador"]},
+    {"name": "Documentos", "icon": "description", "url": "#", "roles": ["operador"]},
+    {"name": "Empleados", "icon": "groups", "url": "#", "roles": ["administrador general", "recursos humanos"]},
+    {"name": "Mi equipo", "icon": "group", "url": "#", "roles": ["jefe de area"]},
+    {"name": "Notificaciones", "icon": "notifications", "url": "#", "roles": ["operador"]},
+    {"name": "Recibo de sueldo", "icon": "receipt_long", "url": "#", "roles": ["operador"]},
+    {"name": "Reportes", "icon": "download", "url": "#", "roles": ["analista de datos"]},
+    {"name": "Salas", "icon": "room_preferences", "url": "#", "roles": ["organizador de reuniones"]},
+    {"name": "Configuración", "icon": "settings", "url": "#", "roles": ["operador"]},
+    {"name": "Soporte", "icon": "desktop_cloud_stack", "url": "#", "roles": ["operador"]},
+    {"name": "Encuestas", "icon": "mood", "url": "#", "roles": ["operador"]},
+    {"name": "Capacitaciones", "icon": "school", "url": "#", "roles": ["operador"]},
+    # Agregá más bloques según los roles que existan
+]
+
 def before_request_handler():
     print("🔥 before_request ejecutado!")
     if 'user_id' not in session:
@@ -45,7 +65,8 @@ def before_request_handler():
                     "department_name": session['department_name'],
                     "roles": session['roles']
                 }
-
+            # Filtrar los bloques que el usuario puede ver según sus roles
+            g.sidebar_blocks = [block for block in SIDEBAR_BLOCKS if any(role in session['roles'] for role in block["roles"])]
         except Exception as e:
             print(f"Error en before_request: {e}")
             session.clear()  # Limpiar la sesión en caso de error

@@ -9,66 +9,11 @@
     </div>
 
     <div class="sidebar">
-        <a href="#"  class="active">
-            <span class="material-symbols-outlined">Dashboard</span>
-            <h3>Administración</h3>
+        {% for block in g.sidebar_blocks %}
+        <a href="{{ block.url }}">
+            <span class="material-symbols-outlined">{{ block.icon }}</span>
+            <h3>{{ block.name }}</h3>
         </a>
-        <a href="#">
-            <span class="material-symbols-outlined">event</span>
-            <h3>Dashboard</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">school</span>
-            <h3>Dias</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">manage_accounts</span>
-            <h3>Documentos</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">Dashboard</span>
-            <h3>Empleados</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">event</span>
-            <h3>Mi equipo</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">school</span>
-            <h3>Notificaciones</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">manage_accounts</span>
-            <h3>Recibo de sueldo</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">Dashboard</span>
-            <h3>Reportes</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">event</span>
-            <h3>Salas</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">school</span>
-            <h3>Configuración</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">manage_accounts</span>
-            <h3>Soporte</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">manage_accounts</span>
-            <h3>Encuestas</h3>
-        </a>
-        <a href="#">
-            <span class="material-symbols-outlined">manage_accounts</span>
-            <h3>Capacitaciones</h3>
-        </a>
-<!--         <a href="#">
-            <span class="material-symbols-outlined">logout</span>
-            <h3>Logout</h3>
-        </a> -->
-
+        {% endfor %}
     </div>
 </aside>
