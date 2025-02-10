@@ -5,7 +5,7 @@ from before_request import before_request_handler
 app = Flask(__name__)
 app.secret_key = 'tu_clave_secreta_segura'  # Asegúrate de que sea única y segura
 
-# Registrar las rutas organizadas
+# Registrar las rutas organizadas 
 app.before_request(before_request_handler)
 register_blueprints(app)
 
