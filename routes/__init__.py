@@ -4,7 +4,7 @@ from flask import Blueprint
 from .admin_routes import admin_bp
 from routes.auth_routes import auth_bp
 from .dashboard_routes import dashboard_bp
-from .days_routes import days_bp
+from .days_routes import days_bp, days_request_bp
 from .documents_routes import documents_bp
 from .employees_routes import employees_bp
 from .myteam_routes import myteam_bp
@@ -25,6 +25,7 @@ def register_blueprints(app):
     app.register_blueprint(admin_bp)
     app.register_blueprint(dashboard_bp, url_prefix='/dashboard')  # Dashboard
     app.register_blueprint(days_bp)
+    app.register_blueprint(days_request_bp)
     app.register_blueprint(documents_bp)
     app.register_blueprint(employees_bp)
     app.register_blueprint(myteam_bp)

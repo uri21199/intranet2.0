@@ -1,23 +1,14 @@
-<form class="formDays">
+<form class="formDays" onsubmit="enviarSolicitud(event)">
     <label for="typeDay">Tipo de Día</label>
-    <select id="typeDay" onchange="cambiarFormulario()">
-        <option value="ausencia">Día de ausencia</option>
-        <option value="home_office">Día de home office</option>
-        <option value="estudio">Día de estudio</option>
-        <option value="vacaciones">Días de vacaciones</option>
+    <select id="typeDay" name="typeDay" onchange="cambiarFormulario()">
+        <option value="0">Elige un día</option>
+        <option value="1">Día de ausencia</option>
+        <option value="2">Día de estudio</option>
+        <option value="3">Día de home office</option>
+        <option value="4">Días de vacaciones</option>
     </select>
     
     <div id="formFields">
-        <label for="motivo">Motivo</label>
-        <select id="motivo">
-            <option value="enfermedad">Enfermedad</option>
-            <option value="turno_medico">Turno médico</option>
-            <option value="mudanza">Mudanza</option>
-            <option value="problema_familiar">Problema familiar</option>
-            <option value="otro">Otro</option>
-        </select>
-        <label for="fecha">Fecha</label>
-        <input type="date" id="fecha" min="" max="">
     </div>
     
     <button type="submit">Enviar solicitud</button>

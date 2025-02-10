@@ -12,7 +12,7 @@ class RequestedDay(Base):
     start_date = Column(Date, nullable=False)
     end_date = Column(Date, nullable=False)
     reason = Column(Text, nullable=True)
-    status = Column(String(50), default="Pending")
+    status = Column(String(50), default="Pendiente")
     file_id = Column(Integer, ForeignKey("documents.files.id", ondelete="SET NULL"), nullable=True)
     created_at = Column(TIMESTAMP, server_default=func.now())
     updated_at = Column(TIMESTAMP, server_default=func.now(), onupdate=func.now())
