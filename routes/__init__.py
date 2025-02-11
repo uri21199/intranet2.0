@@ -22,7 +22,7 @@ from .main_routes import main_bp  # Agregamos la nueva ruta
 def register_blueprints(app):
     app.register_blueprint(main_bp)  # Agregamos el blueprint de index
     app.register_blueprint(auth_bp, url_prefix='/auth') # Login/logout
-    app.register_blueprint(admin_bp)
+    app.register_blueprint(admin_bp, url_prefix="/admin")
     app.register_blueprint(dashboard_bp, url_prefix='/dashboard')  # Dashboard
     app.register_blueprint(days_bp)
     app.register_blueprint(documents_bp)

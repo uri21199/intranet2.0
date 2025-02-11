@@ -18,7 +18,7 @@ SIDEBAR_BLOCKS = [
     {"name": "Notificaciones", "icon": "notifications", "url": "notifications", "roles": ["operador"]},
     {"name": "Recibo de sueldo", "icon": "receipt_long", "url": "payroll", "roles": ["operador"]},
     {"name": "Reportes", "icon": "download", "url": "reporting", "roles": ["analista de datos"]},
-    {"name": "Salas", "icon": "room_preferences", "url": "rooms", "roles": ["organizador de reuniones"]},
+    {"name": "Salas", "icon": "room_preferences", "url": "rooms", "roles": ["organizador de reuniones", "capacitador"]},
     {"name": "Configuración", "icon": "settings", "url": "settings", "roles": ["operador"]},
     {"name": "Soporte", "icon": "desktop_cloud_stack", "url": "support", "roles": ["operador"]},
     {"name": "Encuestas", "icon": "mood", "url": "surveys", "roles": ["operador"]},
