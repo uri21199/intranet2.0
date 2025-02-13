@@ -13,7 +13,8 @@ DATABASE_CONFIG = {
 
 # Crear la URL de conexión
 DATABASE_URL = f"postgresql://{DATABASE_CONFIG['user']}:{DATABASE_CONFIG['password']}@" \
-               f"{DATABASE_CONFIG['host']}:{DATABASE_CONFIG['port']}/{DATABASE_CONFIG['database']}"
+               f"{DATABASE_CONFIG['host']}:{DATABASE_CONFIG['port']}/{DATABASE_CONFIG['database']}?client_encoding=utf8"
+
 
 # Configuración del motor de SQLAlchemy
 engine = create_engine(DATABASE_URL, echo=True)

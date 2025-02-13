@@ -35,4 +35,4 @@ def register_blueprints(app):
     app.register_blueprint(support_bp)
     app.register_blueprint(surveys_bp)
     app.register_blueprint(trainings_bp)
-    app.register_blueprint(settings_bp)
+    app.register_blueprint(settings_bp, url_prefix='/settings')

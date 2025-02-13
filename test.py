@@ -1,28 +1,9 @@
-import os
-import pandas as pd
+from werkzeug.security import check_password_hash
 
-def listar_directorio_en_excel(directorio, nombre_excel="estructura_directorio.xlsx"):
-    datos = []
+hashed_password = "scrypt:32768:8:1$33JSUtB2xoFt7zz9$50309db8f65097cd37932085f9a843288281b2c35b3c424ffa1af61901b21a65fef9b23b19cc835954a92869af27de6f772bc0d6a56a723c371868ca8727c4ce"
+input_password = "20365521132"
 
-    for ruta, subdirs, archivos in os.walk(directorio):
-        # Agregar carpetas
-        for subdir in subdirs:
-            datos.append([os.path.join(ruta, subdir), ruta, subdir, "Carpeta", ""])
-
-        # Agregar archivos
-        for archivo in archivos:
-            ruta_completa = os.path.join(ruta, archivo)
-            tamaño = os.path.getsize(ruta_completa)  # Tamaño en bytes
-            datos.append([ruta_completa, ruta, archivo, "Archivo", tamaño])
-
-    # Convertir a DataFrame
-    df = pd.DataFrame(datos, columns=["Ruta Completa", "Carpeta Padre", "Nombre", "Tipo", "Tamaño (bytes)"])
-
-    # Guardar en un archivo Excel
-    df.to_excel(nombre_excel, index=False)
-    print(f"Archivo Excel guardado como: {nombre_excel}")
-
-# 📂 Cambia esta ruta al directorio que deseas listar
-directorio_a_listar = "G:\Mi unidad\Freelance\Intra-embrace"
-
-listar_directorio_en_excel(directorio_a_listar)
+if check_password_hash(hashed_password, input_password):
+    print("✅ Contraseña correcta")
+else:
+    print("❌ Contraseña incorrecta")
