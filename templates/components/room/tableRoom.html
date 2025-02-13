@@ -1,89 +1,35 @@
 <div class="tableRoom">
-    <h3>Historial de solicitudes</h3>
-    <table>
+    <h3>Historial de Reservas</h3>
+    
+    <div class="filters">
+        <label for="filterRoom">Sala:</label>
+        <select id="filterRoom" onchange="cargarReservas()">
+            <option value="">Todas</option>
+            <!-- Opciones dinámicas llenadas desde JS -->
+        </select>
+
+        <label for="filterStatus">Estado:</label>
+        <select id="filterStatus" onchange="cargarReservas()">
+            <option value="">Todos</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Aprobado">Aprobado</option>
+            <option value="Rechazado">Rechazado</option>
+        </select>
+    </div>
+
+    <table class="tableRoom">
         <thead>
             <tr>
-                <th>Tipo de Día</th>
-                <th>Fecha(s)</th>
-                <th>Motivo</th>
+                <th>Sala</th>
+                <th>Fecha</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
                 <th>Estado</th>
-                <th>Archivo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>Día de ausencia</td>
-                <td>15/11/2023</td>
-                <td>Cita médica</td>
-                <td class="status-pending">Pendiente</td>
-                <td class="file"><button>Subir</button></td>
-                <td class="actions">
-                    <button title="Editar solicitud"> 📝 </button>
-                    <button title="Eliminar solicitud"> 🗑️ </button>
-                </td>
-
-            </tr>
-            <tr>
-                <td>Día de estudio</td>
-                <td>07/12/2023 - 08/12/2023</td>
-                <td>Preparación examen</td>
-                <td class="status-approved">Aprobado</td>
-                <td class="file"><button>Subir</button></td>
-                <td class="actions">
-                    <button title="Editar solicitud"> 📝 </button>
-                    <button title="Eliminar solicitud"> 🗑️ </button>
-                </td>
-
-            </tr>
-            <tr>
-                <td>Días de vacaciones</td>
-                <td>20/12/2023 - 30/12/2023</td>
-                <td>-</td>
-                <td class="status-rejected">Rechazado</td>
-                <td>-</td>
-                <td class="actions">
-                    <button title="Editar solicitud"> 📝 </button>
-                    <button title="Eliminar solicitud"> 🗑️ </button>
-                </td>
-
-            </tr>
-            <tr>
-                <td>Días de vacaciones</td>
-                <td>20/12/2023 - 30/12/2023</td>
-                <td>-</td>
-                <td class="status-rejected">Rechazado</td>
-                <td>-</td>
-                <td class="actions">
-                    <button title="Editar solicitud"> 📝 </button>
-                    <button title="Eliminar solicitud"> 🗑️ </button>
-                </td>
-
-            </tr>
-            <tr>
-                <td>Días de vacaciones</td>
-                <td>20/12/2023 - 30/12/2023</td>
-                <td>-</td>
-                <td class="status-rejected">Rechazado</td>
-                <td>-</td>
-                <td class="actions">
-                    <button title="Editar solicitud"> 📝 </button>
-                    <button title="Eliminar solicitud"> 🗑️ </button>
-                </td>
-
-            </tr>
-            <tr>
-                <td>Días de vacaciones</td>
-                <td>20/12/2023 - 30/12/2023</td>
-                <td>-</td>
-                <td class="status-rejected">Rechazado</td>
-                <td>-</td>
-                <td class="actions">
-                    <button title="Editar solicitud"> 📝 </button>
-                    <button title="Eliminar solicitud"> 🗑️ </button>
-                </td>
-
-            </tr>
+        <tbody id="tablaReservas">
+            <!-- Datos se llenarán dinámicamente con JS -->
         </tbody>
     </table>
 </div>
