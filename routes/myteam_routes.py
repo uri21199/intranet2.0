@@ -168,3 +168,73 @@ def get_monthly_absences():
     } for a in absences]
 
     return jsonify(absences_data)
+
+
+@myteam_bp.route("/employee/<int:employee_id>", methods=["GET"])
+def get_employee_details(employee_id):
+    """Obtiene los detalles de un empleado y su historial de ausencias"""
+    
+    print(f"🔍 Consultando datos del empleado con ID: {employee_id}")  # Debug
+
+    session_db = SessionLocal()
+
+    # Obtener la información del empleado
+    employee = session_db.query(Employee).filter(Employee.id == employee_id).first()
+    if not employee:
+        session_db.close()
+        print(f"⚠️ Empleado con ID {employee_id} no encontrado.")  # Debug
+        return jsonify({"message": "Empleado no encontrado"}), 404
+
+    print(f"✅ Empleado encontrado: {employee.first_name} {employee.last_name}")  # Debug
+
+    # Obtener historial de requested_days del empleado
+    requested_days = session_db.query(RequestedDay).filter(
+        RequestedDay.employee_id == employee_id
+    ).all()
+
+    print(f"📊 Total de ausencias registradas: {len(requested_days)}")  # Debug
+
+    # Serializar la información del empleado
+    employee_info = {
+        "id": employee.id,
+        "first_name": employee.first_name,
+        "last_name": employee.last_name,
+        "email": employee.email,
+        "phone": employee.phone,
+        "state": employee.state,
+        "city": employee.city,
+        "address": employee.address,
+        "tax_id": employee.tax_id,
+        "hire_date": employee.hire_date.strftime("%d/%m/%Y") if employee.hire_date else "-",
+        "record_number": employee.record_number
+    }
+
+    DAY_TYPE_MAP = {
+    1: "Ausencia",
+    2: "Estudio",
+    3: "Home Office",
+    4: "Vacaciones"
+    }
+
+    # Serializar el historial de requested_days
+    requested_days_data = [
+        {
+            "id": rd.id,
+            "status": rd.status,
+            "created_at": rd.created_at.strftime("%d/%m/%Y") if rd.created_at else "-",
+            "start_date": rd.start_date.strftime("%d/%m/%Y") if rd.start_date else "-",
+            "day_type": DAY_TYPE_MAP.get(rd.day_type_id, "Desconocido"), # Podrías hacer una relación para mostrar el nombre en lugar del ID
+            "reason": rd.reason or "-"
+        }
+        for rd in requested_days
+    ]
+    print(requested_days_data)
+
+    session_db.close()
+
+    print("📌 Datos serializados correctamente.")  # Debug
+
+    return jsonify({
+        "employee": employee_info,
+        "requested_days": requested_days_data
+    })
