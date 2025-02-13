@@ -2,48 +2,108 @@
     <div class="highlight-container">
         <div class="highlight">
             <h2>Ausentes de la Semana</h2>
-            <p><strong>20</strong></p>
+            <p><strong id="weeklyAbsences">0</strong></p>
         </div>
         <div class="highlight">
             <h2>Ausentes del mes</h2>
-            <p><strong>5</strong></p>
+            <p><strong id="monthlyAbsences">0</strong></p>
         </div>
     </div>
     <div class="card">
-        <h2>Emails y Credenciales</h2>
-        <table class="emails-table">
+        <h2>Ausencias del Mes</h2>
+        <table id="monthlyAbsencesTable" class="emails-table">
             <thead>
                 <tr>
-                    <th>Nombre</th>
+                    <th>Empleado</th>
+                    <th>Fecha de ausencia</th>
+                    <th>Tipo de Ausencia</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="card">
+        <h2>Listado de Empleados</h2>
+        <table id="teamAbsencesTable" class="emails-table">
+            <thead>
+                <tr>
+                    <th>Empleado</th>
+                    <th>Última Ausencia</th>
                     <th>Próxima Ausencia</th>
                     <th>Ausencias en el Mes</th>
-                    <th>Última Ausencia</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Juan Pérez</td>
-                    <td>10/02/2025</td>
-                    <td>3</td>
-                    <td>05/02/2025</td>
-                    <td class="actions">
-                        <button><i>🔍</i> Ver Historial</button>
-                        <button><i>✏️</i> Editar</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>María López</td>
-                    <td>15/02/2025</td>
-                    <td>2</td>
-                    <td>08/02/2025</td>
-                    <td class="actions">
-                        <button><i>🔍</i> Ver Historial</button>
-                        <button><i>✏️</i> Editar</button>
-                    </td>
-                </tr>
-            </tbody>
+            <tbody></tbody>
         </table>
     </div>
+    
 
 </div>
+
+<script>
+    function loadAbsencesSummary() {
+        fetch("/myteam/absences-summary")
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("weeklyAbsences").innerText = data.weekly_absences;
+                document.getElementById("monthlyAbsences").innerText = data.monthly_absences;
+            })
+            .catch(error => console.error("Error al cargar ausencias:", error));
+    }
+    
+    // Cargar los datos al abrir la página
+    document.addEventListener("DOMContentLoaded", loadAbsencesSummary);
+
+    function loadMonthlyAbsences() {
+    fetch("/myteam/monthly-absences")
+        .then(response => response.json())
+        .then(data => {
+            let tableBody = document.querySelector("#monthlyAbsencesTable tbody");
+            tableBody.innerHTML = "";  // Limpia la tabla antes de actualizar
+            
+            data.forEach(absence => {
+                let row = `<tr>
+                    <td>${absence.name}</td>
+                    <td>${absence.start_date}</td>
+                    <td>${absence.absence_type}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        })
+        .catch(error => console.error("Error al cargar ausencias del mes:", error));
+}
+
+// Cargar la tabla al abrir la página
+document.addEventListener("DOMContentLoaded", loadMonthlyAbsences);
+
+function loadTeamAbsences() {
+        fetch("/myteam/data")
+            .then(response => response.json())
+            .then(data => {
+                let tableBody = document.querySelector("#teamAbsencesTable tbody");
+                tableBody.innerHTML = ""; // Limpiar la tabla antes de actualizar
+                
+                data.forEach(employee => {
+                    let row = `<tr>
+                        <td>${employee.name}</td>
+                        <td>${employee.last_absence}</td>
+                        <td>${employee.next_absence}</td>
+                        <td>${employee.absence_count}</td>
+                        <td>
+                            <button onclick="viewHistory(${employee.id})">📜 Ver Historial</button>
+                        </td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            })
+            .catch(error => console.error("Error al cargar la tabla de empleados:", error));
+    }
+    
+    function viewHistory(employeeId) {
+        alert("Aquí se mostrará el historial del empleado ID: " + employeeId);
+    }
+    
+    // Cargar la tabla automáticamente al abrir la página
+    document.addEventListener("DOMContentLoaded", loadTeamAbsences);
+    </script>

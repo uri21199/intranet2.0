@@ -17,38 +17,52 @@ def days_home():
 
 @days_bp.route("/days_request", methods=["POST"])
 def days_request():
+    print("Solicitud recibida en /days_request")  # Debug
+
     if 'user_id' not in session:
+        print("Error: Usuario no autenticado")  # Debug
         return jsonify({"message": "No autenticado"}), 401
-    
+
     data = request.json
+    print("Datos recibidos:", data)  # Debug
+
     employee_id = session['user_id']
     day_type_id = data.get("day_type_id")
     fechas = data.get("fechas", [])
     reason = data.get("reason", "")
     asistencia = data.get("asistencia", None)
-    
+
+    print(f"Usuario ID: {employee_id}, Tipo de día ID: {day_type_id}, Fechas: {fechas}, Razón: {reason}, Asistencia: {asistencia}")  # Debug
+
     db: Session = next(get_db())
     try:
         # Verificar si el tipo de día existe
         day_type = db.query(DayType).filter(DayType.id == day_type_id).first()
         if not day_type:
+            print(f"Error: Tipo de día inválido ({day_type_id})")  # Debug
             return jsonify({"message": "Tipo de día inválido"}), 400
+
+        print(f"Tipo de día encontrado: {day_type.name}")  # Debug
 
         nuevas_solicitudes = []
         for fecha in fechas:
+            print(f"Procesando fecha: {fecha}")  # Debug
             start_date = datetime.strptime(fecha, "%Y-%m-%d").date()
             end_date = start_date if day_type.name != "vacaciones" else datetime.strptime(data.get("end_date"), "%Y-%m-%d").date()
-            
+
+            print(f"Fecha de inicio: {start_date}, Fecha de fin: {end_date}")  # Debug
+
             # Verificar si ya existe una solicitud igual
             existing_request = db.query(RequestedDay).filter(
                 RequestedDay.employee_id == employee_id,
                 RequestedDay.day_type_id == day_type_id,
                 RequestedDay.start_date == start_date
             ).first()
-            
+
             if existing_request:
+                print(f"Error: Ya existe una solicitud para la fecha {fecha}")  # Debug
                 return jsonify({"message": "Ya existe una solicitud para la fecha: " + fecha}), 400
-            
+
             nueva_solicitud = RequestedDay(
                 employee_id=employee_id,
                 day_type_id=day_type_id,
@@ -58,17 +72,24 @@ def days_request():
                 status="Pendiente",
                 file_id=None
             )
+
+            print(f"Solicitud creada: {nueva_solicitud}")  # Debug
             nuevas_solicitudes.append(nueva_solicitud)
-        
+
         db.add_all(nuevas_solicitudes)
         db.commit()
+        print("Solicitudes guardadas en la base de datos")  # Debug
+
         return jsonify({"message": "Días solicitados exitosamente"}), 200
-    
+
     except SQLAlchemyError as e:
         db.rollback()
+        print("Error en la base de datos:", str(e))  # Debug
         return jsonify({"message": "Error en la base de datos", "error": str(e)}), 500
     finally:
         db.close()
+        print("Conexión cerrada con la base de datos")  # Debug
+
 
 
 

@@ -124,6 +124,7 @@ function actualizarListaFechas() {
 
 function enviarSolicitud(event) {
     event.preventDefault();
+    console.log("Evento submit capturado."); // Debug
 
     const tipoDia = document.getElementById("typeDay").value;
     let fechas = [];
@@ -132,18 +133,25 @@ function enviarSolicitud(event) {
     let reason = "";
     let asistencia = null;
 
+    console.log("Tipo de día seleccionado:", tipoDia); // Debug
+
     if (tipoDia === "3" || tipoDia === "2") {
         fechas = fechasSeleccionadas;
+        console.log("Fechas seleccionadas:", fechas); // Debug
     } else if (tipoDia === "4") {
         start_date = document.getElementById("inicio").value;
         end_date = document.getElementById("fin").value;
         asistencia = document.getElementById("asistencia").value;
+
+        console.log(`Fecha inicio: ${start_date}, Fecha fin: ${end_date}, Asistencia: ${asistencia}`); // Debug
     } else {
         start_date = document.getElementById("fecha").value;
+        console.log("Fecha seleccionada:", start_date); // Debug
     }
 
     if (!fechas.length && !start_date) {
         alert("Debe seleccionar al menos una fecha.");
+        console.error("Error: No se seleccionó ninguna fecha."); // Debug
         return;
     }
 
@@ -155,12 +163,23 @@ function enviarSolicitud(event) {
         asistencia: asistencia
     };
 
-    fetch("/days_request", {
+    console.log("Datos enviados en el request:", requestData); // Debug
+
+    fetch("/days/days_request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestData)
     })
-    .then(response => response.json())
-    .then(data => alert(data.message))
-    .catch(error => console.error("Error en la solicitud:", error));
+    .then(response => {
+        console.log("Respuesta recibida del servidor:", response.status); // Debug
+        return response.json();
+    })
+    .then(data => {
+        console.log("Respuesta procesada:", data); // Debug
+        alert(data.message);
+    })
+    .catch(error => {
+        console.error("Error en la solicitud:", error); // Debug
+    });
 }
+
