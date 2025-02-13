@@ -11,7 +11,7 @@ from werkzeug.utils import secure_filename
 
 days_bp = Blueprint("days", __name__)
 
-@days_bp.route("/days")
+@days_bp.route("/")
 def days_home():
     return render_template("pages/days.html")
 

@@ -24,7 +24,7 @@ def register_blueprints(app):
     app.register_blueprint(auth_bp, url_prefix='/auth') # Login/logout
     app.register_blueprint(admin_bp, url_prefix="/admin")
     app.register_blueprint(dashboard_bp, url_prefix='/dashboard')  # Dashboard
-    app.register_blueprint(days_bp)
+    app.register_blueprint(days_bp, url_prefix='/days')
     app.register_blueprint(documents_bp)
     app.register_blueprint(employees_bp)
     app.register_blueprint(myteam_bp)

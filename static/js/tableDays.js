@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function cargarSolicitudes() {
-    fetch("/get_days")
+    fetch("/days/get_days")
         .then(response => response.json())
         .then(data => actualizarTabla(data))
         .catch(error => console.error("Error al cargar solicitudes:", error));
@@ -42,7 +42,7 @@ function editarDia(dayId, fechaActual) {
     const nuevaFecha = prompt("Ingrese la nueva fecha (YYYY-MM-DD):", fechaActual);
     if (!nuevaFecha) return;
 
-    fetch("/update_day", {
+    fetch("/days/update_day", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ day_id: dayId, new_date: nuevaFecha })
@@ -58,7 +58,7 @@ function editarDia(dayId, fechaActual) {
 function eliminarDia(dayId) {
     if (!confirm("¿Estás seguro de que deseas eliminar esta solicitud?")) return;
 
-    fetch("/delete_day", {
+    fetch("/days/delete_day", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ day_id: dayId })
