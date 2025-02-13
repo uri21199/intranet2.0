@@ -1,11 +1,25 @@
 <div class="containerFormRoom">
     <label for="typeRoom">Sala a reservar</label>
-    <select id="typeRoom" onchange="cambiarFormulario()">
-        <option value="">Elija una sala</option>
-        <option value="capacitaciones">Sala de Capacitaciones</option>
-        <option value="reuniones">Sala de Reuniones</option>
+    <select id="typeRoom" name="room" required>
     </select>
     <div id="formFields">
+        <div id="clientSection" style="display: none;">
+            <label for="client">Seleccionar Cliente:</label>
+            <select id="client" name="client"></select>
+        </div>
+        <div id="reasonSection" style="display: none;">
+            <label for="reason">Motivo:</label>
+            <input type="text" id="reason" name="reason">
+        </div>
+
+        <label for="date">Fecha:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="start_time">Hora de Inicio:</label>
+        <input type="time" id="start_time" name="start_time" required>
+
+        <label for="end_time">Hora de Fin:</label>
+        <input type="time" id="end_time" name="end_time" required>
     </div>
-    <button onclick="enviarSolicitud()">Reservar Sala</button>
+    <button type="submit">Reservar</button>
 </div>

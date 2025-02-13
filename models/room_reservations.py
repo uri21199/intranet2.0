@@ -13,7 +13,7 @@ class RoomReservation(Base):
     client_id = Column(Integer, ForeignKey("general.clients.id", ondelete="SET NULL"), nullable=True)
     use = Column(String(100), default="Capacitación")
     justification = Column(Text, nullable=True)
-    status = Column(String(50), default="Pending")
+    status = Column(String(50), default="Pendiente")
     authorized_by = Column(Integer, ForeignKey("hr.employees.id", ondelete="SET NULL"), nullable=True)
     reservation_date = Column(Date, nullable=False)
     start_time = Column(Time, nullable=False)

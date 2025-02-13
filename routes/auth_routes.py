@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, session, redirect, url_for
+from flask import Blueprint, request, jsonify, session, redirect, url_for, render_template
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from config import get_db
@@ -10,8 +10,15 @@ from models.roles import Role
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/login', methods=['POST'])
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
+
+    if request.method == 'GET':
+        return render_template("index.html")
+    if request.method == 'POST':
+        if request.content_type != 'application/json':
+            return jsonify({"message": "Content-Type debe ser application/json"}), 415
+
     data = request.json
     email = data.get('email')
     password = data.get('password')
