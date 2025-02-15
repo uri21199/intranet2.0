@@ -1,42 +1,64 @@
 <div class="sidebar">
-    <h3>Filtros</h3>
+    <h3>Generar Reporte</h3>
+    
     <div class="form-group">
         <label for="reportType">Tipo de Reporte</label>
         <select id="reportType">
+            <option value="">Seleccione un reporte</option>
             <option value="employees_status">Empleados Activos/Inactivos</option>
             <option value="requested_days">Historial de Días Solicitados</option>
             <option value="trainings">Capacitaciones Completadas</option>
-            <option>Listado de Capacitaciones</option>
-            <option>Historial de Recibos de Sueldo</option>
-            <option>Asignación de Equipos</option>
-            <option>Historial de Reservas de Salas</option>
-            <option>Versionado de Documentos</option>
-            <option>Historial de Cambios en Permisos</option>
-            <option>Historial de Accesos y Logins</option>
-            <option>Reporte de Tickets de Soporte</option>
+            <option value="trainings_list">Listado de Capacitaciones</option>
+            <option value="salary_receipts">Historial de Recibos de Sueldo</option>
+            <option value="equipment">Asignación de Equipos</option>
+            <option value="room_reservations">Historial de Reservas de Salas</option>
+            <option value="document_versions">Versionado de Documentos</option>
+            <option value="access_logs">Historial de Accesos y Logins</option>
+            <option value="system_tickets">Reporte de Tickets de Soporte</option>
         </select>
     </div>
-    <div class="form-group hidden" id="filterTypeContainer">
-        <label for="filterType">Seleccione el filtro:</label>
-        <select id="filterType" onchange="updateSubFilters()">
-            <option value="none">Sin filtro</option>
-            <option value="area">Empleados de un área</option>
-            <option value="day_type">Por tipo de día</option>
-            <option value="role">Por rol</option>
-            <option value="status">Por estado</option>
-        </select>
+    
+    <!-- Contenedor de Filtros -->
+    <div id="filtersContainer" class="hidden">
+        
+        <!-- Filtros específicos según el reporte -->
+        <div class="form-group hidden" id="areaFilterContainer">
+            <label for="areaFilter">Área</label>
+            <select id="areaFilter">
+                <option value="all">Todos</option>
+            </select>
+        </div>
+        
+        <div class="form-group hidden" id="roleFilterContainer">
+            <label for="roleFilter">Rol</label>
+            <select id="roleFilter">
+                <option value="all">Todos</option>
+            </select>
+        </div>
+        
+        <div class="form-group hidden" id="employeeFilterContainer">
+            <label for="employeeFilter">Empleado</label>
+            <select id="employeeFilter">
+                <option value="all">Todos</option>
+            </select>
+        </div>
+        
+        <div class="form-group hidden" id="dateRangeContainer">
+            <label for="dateRange">Rango de Fechas</label>
+            <input type="date" id="startDate"> - <input type="date" id="endDate">
+        </div>
+        
+        <div class="form-group hidden" id="statusFilterContainer">
+            <label for="statusFilter">Estado</label>
+            <select id="statusFilter">
+                <option value="all">Todos</option>
+            </select>
+        </div>
         
     </div>
-
-    <div class="form-group hidden" id="subFilterContainer">
-        <label for="subFilter">Seleccione una opción:</label>
-        <select id="subFilter">
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="dateRange">Rango de Fechas</label>
-        <input type="date" id="startDate"> - <input type="date" id="endDate">
-    </div>
-    <button class="button">Generar Reporte</button>
+    
+    <button class="button hidden" id="generateReport">Generar Reporte</button>
+    
 </div>
+
+<div id="reportResults"></div>

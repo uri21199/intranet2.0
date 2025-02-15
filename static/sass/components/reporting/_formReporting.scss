@@ -6,7 +6,9 @@
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         margin: 0 2rem;
-
+        .hidden{
+            display: none;
+        }
         .form-group {
             margin-bottom: 15px;
         }
@@ -31,6 +33,9 @@
             display: block;
             width: 100%;
             border: none;
+        }
+        .button.hidden{
+            display: none;
         }
         .button:hover {
             background-color: #e64a19;

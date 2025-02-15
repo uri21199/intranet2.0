@@ -30,7 +30,7 @@ def register_blueprints(app):
     app.register_blueprint(myteam_bp, url_prefix='/myteam')
     app.register_blueprint(notifications_bp)
     app.register_blueprint(payroll_bp)
-    app.register_blueprint(reporting_bp)
+    app.register_blueprint(reporting_bp, url_prefix="/reporting")
     app.register_blueprint(rooms_bp, url_prefix="/rooms")
     app.register_blueprint(support_bp)
     app.register_blueprint(surveys_bp)

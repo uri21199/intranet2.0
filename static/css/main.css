@@ -1047,6 +1047,9 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 0 2rem;
 }
+.containerReporting .sidebar .hidden {
+  display: none;
+}
 .containerReporting .sidebar .form-group {
   margin-bottom: 15px;
 }
@@ -1071,6 +1074,9 @@
   display: block;
   width: 100%;
   border: none;
+}
+.containerReporting .sidebar .button.hidden {
+  display: none;
 }
 .containerReporting .sidebar .button:hover {
   background-color: #e64a19;
