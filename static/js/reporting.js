@@ -70,9 +70,6 @@ function mostrarFiltros(reporteSeleccionado) {
     document.querySelectorAll("#filtersContainer .form-group").forEach(el => el.classList.add("hidden"));
 
     if (!reportFilters[reporteSeleccionado]) return;
-
-    // Obtener los filtros asociados a ese reporte
-    const filtros = reportFilters[reporteSeleccionado].filters;
     
     // Buscar los roles permitidos para este reporte
     let filtrosPermitidos = new Set(); // Usamos un Set para evitar duplicados
@@ -108,10 +105,9 @@ document.getElementById("reportType").addEventListener("change", function() {
 
     mostrarFiltros(reporteSeleccionado);
 });
-console.log("Esto es previo a cargarUsuario()")
+
 
 async function cargarUsuario() {
-    console.log("Ejecutando cargarUsuario()...");
 
     try {
         const response = await fetch("/admin/get_user_info");
@@ -141,7 +137,8 @@ async function cargarAreasRoles() {
 
     const areas = await areasResponse.json();
     const roles = await rolesResponse.json();
-
+    console.log("Estos son las areas:", areas);
+    console.log("Estos son los roles:", roles);
     const areaSelect = document.getElementById("areaFilter");
     const roleSelect = document.getElementById("roleFilter");
 
@@ -160,7 +157,6 @@ async function cargarEmpleados() {
 
     let areaId = areaFilter.value;
     let roleId = roleFilter.value;
-    
     console.log(window.userRoles)
     // 💡 Asegurar que window.userRoles está definido
     if (!window.userRoles || !Array.isArray(window.userRoles)) {
@@ -201,9 +197,9 @@ async function cargarEmpleados() {
 
 document.getElementById("areaFilter").addEventListener("change", cargarEmpleados);
 document.getElementById("roleFilter").addEventListener("change", cargarEmpleados);
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     console.log("El DOM está completamente cargado");
-    cargarUsuario();  // Llamamos a la función cuando el HTML ya está listo
+    await cargarUsuario();  // Llamamos a la función cuando el HTML ya está listo
     cargarEmpleados();
     cargarAreasRoles();
 });
