@@ -10,56 +10,56 @@ const reportFilters = {
         roles: {
             "administrador general": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer"],
             "recursos humanos": ["dateRangeContainer", "employeeFilterContainer"],
-            "jefe de area": ["employeeFilterContainer"]
+            "jefe de area": ["employeeFilterContainer", "dateRangeContainer"]
         }
     },
     "trainings": {
         roles: {
-            "administrador general": ["dateRangeContainer", "statusFilterContainer"],
-            "recursos humanos": ["dateRangeContainer", "statusFilterContainer"]
+            "administrador general": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer", "statusFilterContainer"],
+            "recursos humanos": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer", "statusFilterContainer"]
         }
     },
     "trainings_list": {
         roles: {
-            "administrador general": ["dateRangeContainer", "statusFilterContainer"],
-            "recursos humanos": ["dateRangeContainer", "statusFilterContainer"]
+            "administrador general": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "statusFilterContainer"],
+            "recursos humanos": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "statusFilterContainer"]
         }
     },
     "salary_receipts": {
         roles: {
-            "administrador general": ["dateRangeContainer", "statusFilterContainer"],
-            "recursos humanos": ["dateRangeContainer", "statusFilterContainer"]
+            "administrador general": ["employeeFilterContainer","dateRangeContainer", "statusFilterContainer"],
+            "recursos humanos": ["employeeFilterContainer","dateRangeContainer", "statusFilterContainer"]
         }
     },
     "equipments": {
         roles: {
-            "administrador general": ["dateRangeContainer", "statusFilterContainer"],
-            "recursos humanos": ["dateRangeContainer", "statusFilterContainer"]
+            "administrador general": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer", "statusFilterContainer"],
+            "recursos humanos": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer", "statusFilterContainer"]
         }
     },
     "room_reservations": {
         roles: {
-            "administrador general": ["dateRangeContainer", "statusFilterContainer"],
-            "recursos humanos": ["dateRangeContainer", "statusFilterContainer"]
+            "administrador general": ["dateRangeContainer", "statusFilterContainer", "employeeFilterContainer"],
+            "recursos humanos": ["dateRangeContainer", "statusFilterContainer", "employeeFilterContainer"]
         }
     },
     "document_versions": {
         roles: {
-            "administrador general": ["dateRangeContainer", "statusFilterContainer"],
-            "recursos humanos": ["dateRangeContainer", "statusFilterContainer"]
+            "administrador general": [],
+            "recursos humanos": []
         }
     },
     "access_logs": {
         roles: {
-            "administrador general": ["dateRangeContainer", "statusFilterContainer"],
-            "recursos humanos": ["dateRangeContainer", "statusFilterContainer"]
+            "administrador general": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer"],
+            "recursos humanos": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer"]
         }
     },
     "system_tickets": {
         roles: {
-            "administrador general": ["dateRangeContainer", "statusFilterContainer", "areaFilterContainer"],
-            "recursos humanos": ["dateRangeContainer", "statusFilterContainer"],
-            "soporte tecnico": ["dateRangeContainer", "statusFilterContainer"]
+            "administrador general": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer", "statusFilterContainer"],
+            "recursos humanos": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer", "statusFilterContainer"],
+            "soporte tecnico": ["areaFilterContainer", "roleFilterContainer", "dateRangeContainer", "employeeFilterContainer", "statusFilterContainer"]
         }
     }
 };
@@ -203,3 +203,74 @@ document.addEventListener("DOMContentLoaded", async function () {
     cargarEmpleados();
     cargarAreasRoles();
 });
+
+
+
+document.getElementById("generateReport").addEventListener("click", async function() {
+    const reportType = document.getElementById("reportType").value;
+    const areaFilter = document.getElementById("areaFilter").value;
+    const roleFilter = document.getElementById("roleFilter").value;
+    const employeeFilter = document.getElementById("employeeFilter").value;
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+    const statusFilter = document.getElementById("statusFilter").value;
+
+    const params = {
+        reportType,
+        areaFilter,
+        roleFilter,
+        employeeFilter,
+        startDate,
+        endDate,
+        statusFilter
+    };
+
+    try {
+        const response = await fetch("/reporting/generate_report", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(params)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            console.log("Reporte generado:", data);
+            mostrarReporte(data); // Función para renderizar los datos en el frontend
+        } else {
+            console.error("Error al generar el reporte:", data.error);
+        }
+
+    } catch (error) {
+        console.error("Error en la solicitud:", error);
+    }
+});
+
+function mostrarReporte(data) {
+    const reportResults = document.getElementById("reportResults");
+    reportResults.innerHTML = "<h3>Resultados del Reporte</h3>";
+
+    if (data.length === 0) {
+        reportResults.innerHTML += "<p>No hay datos para mostrar.</p>";
+        return;
+    }
+
+    let table = "<table border='1'><tr>";
+    for (let key in data[0]) {
+        table += `<th>${key}</th>`;
+    }
+    table += "</tr>";
+
+    data.forEach(row => {
+        table += "<tr>";
+        for (let key in row) {
+            table += `<td>${row[key]}</td>`;
+        }
+        table += "</tr>";
+    });
+
+    table += "</table>";
+    reportResults.innerHTML += table;
+}
