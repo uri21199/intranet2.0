@@ -16,3 +16,4 @@ class Role(Base):
 
     # Relación con permisos (muchos a muchos)
     permissions = relationship("Permission", secondary=role_permissions, back_populates="roles")
+    employees = relationship("Employee", secondary="hr.employee_roles", back_populates="roles")

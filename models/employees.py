@@ -28,3 +28,4 @@ class Employee(Base):
 
     # Relación con departamentos
     department = relationship("Department", back_populates="employees")  # 📌 Esto corrige el error
+    roles = relationship("Role", secondary="hr.employee_roles", back_populates="employees")
