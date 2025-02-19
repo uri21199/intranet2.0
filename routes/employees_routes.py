@@ -63,3 +63,53 @@ def get_requested_days():
 
     finally:
         db.close()
+
+
+@employees_bp.route("/get_home_office_days", methods=["GET"])
+def get_home_office_days():
+    employee_id = request.args.get("employee_id")
+
+    if not employee_id:
+        return jsonify({"error": "Falta employee_id"}), 400
+
+    db: Session = next(get_db()) 
+
+    try:
+        today = datetime.today()
+        start_date_filter = today - timedelta(days=15)
+        end_date_filter = today + timedelta(days=30)
+
+        home_office_days = (
+            db.query(
+                RequestedDay.start_date,
+                RequestedDay.status,
+                DayType.name.label("day_type_name")  # Relación con el tipo de día
+            )
+            .join(DayType, RequestedDay.day_type_id == DayType.id)
+            .filter(RequestedDay.employee_id == employee_id)
+            .filter(DayType.name == "home")  # Filtramos solo Home Office
+            .filter(RequestedDay.start_date >= start_date_filter)  # Últimos 15 días
+            .filter(RequestedDay.start_date <= end_date_filter)  # Próximos 30 días
+            .order_by(RequestedDay.start_date.desc())  # Ordenar por fecha descendente
+            .all()
+        )
+
+        if not home_office_days:
+            return jsonify({"message": "No hay días de Home Office solicitados."}), 200
+
+        response = [
+            {
+                "date": day.start_date.strftime('%d/%m/%Y'),
+                "day_type": day.day_type_name,
+                "status": day.status
+            }
+            for day in home_office_days
+        ]
+
+        return jsonify(response)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        db.close()

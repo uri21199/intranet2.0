@@ -234,6 +234,92 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Cargar los datos del empleado seleccionado por defecto
     loadRequestedDays(employeeSelect.value);
+
+
+
+    /**
+ * Función para limpiar la tabla de Home Office antes de cargar nuevos datos
+ */
+function clearHomeOfficeDays() {
+    document.getElementById("home-office-days").innerHTML = `
+        <tr><td colspan="3">Cargando...</td></tr>`;
+    document.getElementById("modal-home-office-content").innerHTML = `
+        <tr><td colspan="3">Cargando...</td></tr>`;
+}
+
+/**
+ * Función para cargar los días de Home Office del empleado
+ * @param {string} employeeId - ID del empleado seleccionado
+ */
+function loadHomeOfficeDays(employeeId) {
+    if (!employeeId) {
+        console.warn("No se proporcionó un ID de empleado.");
+        return;
+    }
+
+    // Limpiar la tabla antes de cargar nuevos datos
+    clearHomeOfficeDays();
+
+    fetch(`/get_home_office_days?employee_id=${employeeId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error("Error en la respuesta del servidor:", data.error);
+                document.getElementById("home-office-days").innerHTML = `
+                    <tr><td colspan="3">Error: ${data.error}</td></tr>`;
+                return;
+            }
+
+            if (data.message) {
+                document.getElementById("home-office-days").innerHTML = `
+                    <tr><td colspan="3">No hay días de Home Office solicitados.</td></tr>`;
+                document.getElementById("modal-home-office-content").innerHTML = `
+                    <tr><td colspan="3">No hay más registros.</td></tr>`;
+                return;
+            }
+
+            console.log(`Días de Home Office de ${employeeId}:`, data);
+
+            // Mostrar los 2 últimos en la card
+            document.getElementById("home-office-days").innerHTML = data.slice(0, 2).map(day => `
+                <tr>
+                    <td>${day.date}</td>
+                    <td>${day.day_type}</td>
+                    <td><span class="status ${day.status.toLowerCase()}">${day.status}</span></td>
+                </tr>
+            `).join("");
+
+            // Mostrar todos en el modal
+            document.getElementById("modal-home-office-content").innerHTML = data.map(day => `
+                <tr>
+                    <td>${day.date}</td>
+                    <td>${day.day_type}</td>
+                    <td><span class="status ${day.status.toLowerCase()}">${day.status}</span></td>
+                </tr>
+            `).join("");
+        })
+        .catch(error => {
+            console.error("Error cargando días de Home Office:", error);
+            document.getElementById("home-office-days").innerHTML = `
+                <tr><td colspan="3">Error al cargar datos.</td></tr>`;
+        });
+}
+
+/**
+ * Evento cuando se cambia el empleado: cargar sus datos de Home Office
+ */
+document.getElementById("employees").addEventListener("change", function () {
+    loadHomeOfficeDays(this.value);
+});
+
+/**
+ * Cargar los datos del empleado seleccionado por defecto al cargar la página
+ */
+const defaultEmployee = document.getElementById("employees").value;
+if (defaultEmployee) {
+    loadHomeOfficeDays(defaultEmployee);
+}
+
 });
 
 

@@ -15,27 +15,30 @@
                 <tr><td colspan="4">Cargando...</td></tr>
             </tbody>
         </table>
-        <button class="open-modal" data-modal="modalDias">Ver más ⬇</button>
+        <button class="open-modal" data-modal="modalDias">Ver más ⬇️</button>
     </div>
     
     
     
 
-    <!-- Tarjeta: Capacitaciones -->
+    <!-- Tarjeta: HomeOffice -->
     <div class="card">
-        <h3>Capacitaciones</h3>
+        <h3>Home Office</h3>
         <table>
-            <tr>
-                <td>Liderazgo Efectivo</td>
-                <td><span class="status completed">Finalizado 👁️</span></td>
-            </tr>
-            <tr>
-                <td>Gestión de Equipos</td>
-                <td><span class="status pending">Pendiente ✏️</span></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="home-office-days">
+                <tr><td colspan="3">Cargando...</td></tr>
+            </tbody>
         </table>
-        <button class="open-modal" data-modal="modalCapacitaciones">Ver más ⬇️</button>
+        <button class="open-modal" data-modal="modalHomeOffice">Ver más ⬇️</button>
     </div>
+    
 
     <!-- Tarjeta: Reservas de Sala -->
     <div class="card">
@@ -95,17 +98,26 @@
 
 
 
-<!-- Modal Capacitaciones -->
-<div id="modalCapacitaciones" class="modal">
+<!-- Modal HomeOffice -->
+<div id="modalHomeOffice" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Capacitaciones</h2>
+        <h2>Home Office</h2>
         <table>
-            <tr><td>Liderazgo Efectivo</td><td>Finalizado 👁️</td></tr>
-            <tr><td>Gestión de Equipos</td><td>Pendiente ✏️</td></tr>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Tipo</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="modal-home-office-content">
+                <tr><td colspan="3">Cargando...</td></tr>
+            </tbody>
         </table>
     </div>
 </div>
+
 
 <!-- Modal Reservas de Sala -->
 <div id="modalReservas" class="modal">
