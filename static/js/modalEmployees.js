@@ -156,3 +156,107 @@ document.addEventListener("DOMContentLoaded", function () {
     // Iniciar carga de datos al cargar la página
     loadAreas();
 });
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const employeeSelect = document.getElementById("employees");
+    const daysContainer = document.getElementById("requested-days");
+    const modalDaysContainer = document.getElementById("modal-days-content");
+
+    function clearRequestedDays() {
+        document.getElementById("requested-days").innerHTML = `
+            <tr><td colspan="4">Cargando...</td></tr>`;
+        document.getElementById("modal-days-content").innerHTML = `
+            <tr><td colspan="4">Cargando...</td></tr>`;
+    }
+    
+
+    /**
+     * Función para cargar los días solicitados de un empleado
+     * @param {string} employeeId - ID del empleado seleccionado
+     */
+    function loadRequestedDays(employeeId) {
+        if (!employeeId) {
+            console.warn("No se proporcionó un ID de empleado.");
+            return;
+        }
+        clearRequestedDays();
+
+
+        fetch(`/get_requested_days?employee_id=${employeeId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error("Error en la respuesta del servidor:", data.error);
+                    daysContainer.innerHTML = `<tr><td colspan="4">Error: ${data.error}</td></tr>`;
+                    return;
+                }
+
+                if (data.message) {
+                    daysContainer.innerHTML = `<tr><td colspan="4">No hay días solicitados.</td></tr>`;
+                    modalDaysContainer.innerHTML = `<tr><td colspan="4">No hay más registros.</td></tr>`;
+                    return;
+                }
+
+                console.log(`Días solicitados de ${employeeId}:`, data);
+
+                // Mostrar los 2 últimos en la card
+                daysContainer.innerHTML = data.slice(0, 2).map(day => `
+                    <tr>
+                        <td>${day.day_type}</td>
+                        <td>${day.start_date}</td>
+                        <td>${day.end_date}</td>
+                        <td><span class="status ${day.status.toLowerCase()}">${day.status}</span></td>
+                    </tr>
+                `).join("");
+
+                // Mostrar todos en el modal
+                modalDaysContainer.innerHTML = data.map(day => `
+                    <tr>
+                        <td>${day.day_type}</td>
+                        <td>${day.start_date}</td>
+                        <td>${day.end_date}</td>
+                        <td><span class="status ${day.status.toLowerCase()}">${day.status}</span></td>
+                    </tr>
+                `).join("");
+            })
+            .catch(error => {
+                console.error("Error cargando días solicitados:", error);
+                daysContainer.innerHTML = `<tr><td colspan="4">Error al cargar datos.</td></tr>`;
+            });
+    }
+
+    // Evento: Cambio de empleado
+    employeeSelect.addEventListener("change", function () {
+        loadRequestedDays(this.value);
+    });
+
+    // Cargar los datos del empleado seleccionado por defecto
+    loadRequestedDays(employeeSelect.value);
+});
+
+
+document.getElementById("areaEmployees").addEventListener("change", function () {
+    const firstEmployee = document.getElementById("employees").options[0].value;
+    
+    if (firstEmployee) {
+        document.getElementById("employees").value = firstEmployee; // Seleccionar primer empleado de la lista
+        loadRequestedDays(firstEmployee); // Cargar datos del nuevo empleado
+    }
+});
+
+/**
+ * Evento cuando se cambia de empleado: cargar sus datos
+ */
+document.getElementById("employees").addEventListener("change", function () {
+    loadRequestedDays(this.value);
+});
+
+/**
+ * Cargar los datos del empleado seleccionado por defecto al cargar la página
+ */
+const defaultEmployee = document.getElementById("employees").value;
+if (defaultEmployee) {
+    loadRequestedDays(defaultEmployee);
+}

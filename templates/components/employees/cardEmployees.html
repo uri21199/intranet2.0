@@ -3,17 +3,23 @@
     <div class="card">
         <h3>Días Solicitados</h3>
         <table>
-            <tr>
-                <td>15/10/2023 - Vacaciones</td>
-                <td><span class="status pending">Pendiente ✏️</span></td>
-            </tr>
-            <tr>
-                <td>20/10/2023 - Home</td>
-                <td><span class="status approved">Aprobado ✏️</span></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="requested-days">
+                <tr><td colspan="4">Cargando...</td></tr>
+            </tbody>
         </table>
-        <button class="open-modal" data-modal="modalDias">Ver más ⬇️</button>
+        <button class="open-modal" data-modal="modalDias">Ver más ⬇</button>
     </div>
+    
+    
+    
 
     <!-- Tarjeta: Capacitaciones -->
     <div class="card">
@@ -72,11 +78,22 @@
         <span class="close">&times;</span>
         <h2>Días Solicitados</h2>
         <table>
-            <tr><td>15/10/2023 - Vacaciones</td><td>Pendiente ✏️</td></tr>
-            <tr><td>20/10/2023 - Home</td><td>Aprobado ✏️</td></tr>
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Inicio</th>
+                    <th>Fin</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="modal-days-content">
+                <tr><td colspan="4">Cargando...</td></tr>
+            </tbody>
         </table>
     </div>
 </div>
+
+
 
 <!-- Modal Capacitaciones -->
 <div id="modalCapacitaciones" class="modal">
