@@ -42,18 +42,19 @@
 
     <!-- Tarjeta: Reservas de Sala -->
     <div class="card">
-        <h3>Reservas de Sala</h3>
+        <h3>Capacitaciones Realizadas</h3>
         <table>
-            <tr>
-                <td>22/10/2023 - Sala A</td>
-                <td><span class="status reserved">Reservada 👁️</span></td>
-            </tr>
-            <tr>
-                <td>25/10/2023 - Sala B</td>
-                <td><span class="status pending">Pendiente ✏️</span></td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Capacitación</th>
+                </tr>
+            </thead>
+            <tbody id="trainings-done">
+                <tr><td colspan="2">Cargando...</td></tr>
+            </tbody>
         </table>
-        <button class="open-modal" data-modal="modalReservas">Ver más ⬇️</button>
+        <button class="open-modal" data-modal="modalTrainings">Ver más ⬇️</button>
     </div>
 
     <!-- Tarjeta: Recibos de Sueldo -->
@@ -120,13 +121,20 @@
 
 
 <!-- Modal Reservas de Sala -->
-<div id="modalReservas" class="modal">
+<div id="modalTrainings" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Reservas de Sala</h2>
+        <h2>Capacitaciones Realizadas</h2>
         <table>
-            <tr><td>22/10/2023 - Sala A</td><td>Reservada 👁️</td></tr>
-            <tr><td>25/10/2023 - Sala B</td><td>Pendiente ✏️</td></tr>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Capacitación</th>
+                </tr>
+            </thead>
+            <tbody id="modal-trainings-content">
+                <tr><td colspan="2">Cargando...</td></tr>
+            </tbody>
         </table>
     </div>
 </div>

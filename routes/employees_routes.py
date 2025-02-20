@@ -1,12 +1,12 @@
 from flask import Blueprint, render_template, jsonify, session, request
 from config import get_db
 from sqlalchemy.orm import Session, joinedload
-from models import Room, Client, Role, Department, Employee, EmployeeRole, RequestedDay, DayType
+from models import Room, Client, Role, Department, Employee, EmployeeRole, RequestedDay, DayType, Training, TrainedEmployee
 from datetime import datetime, timedelta
 
 employees_bp = Blueprint("employees", __name__)
 
-@employees_bp.route("/employees")
+@employees_bp.route("/")
 def employees_home():
     return render_template("pages/employees.html")
 
@@ -104,6 +104,47 @@ def get_home_office_days():
                 "status": day.status
             }
             for day in home_office_days
+        ]
+
+        return jsonify(response)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        db.close()
+
+
+@employees_bp.route("/get_trainings_done", methods=["GET"])
+def get_trainings_done():
+    employee_id = request.args.get("employee_id")
+    
+    if not employee_id:
+        return jsonify({"error": "Falta employee_id"}), 400
+
+    db: Session = next(get_db()) 
+
+    try:
+        trainings_done = (
+            db.query(
+                Training.name.label("training_name"),
+                TrainedEmployee.attendance_date.label("training_date")
+            )
+            .join(Training, Training.id == TrainedEmployee.training_id)
+            .filter(TrainedEmployee.employee_id == employee_id)
+            .order_by(TrainedEmployee.attendance_date.desc())
+            .all()
+        )
+
+        if not trainings_done:
+            return jsonify({"message": "No hay capacitaciones registradas."}), 200
+
+        response = [
+            {
+                "training_name": training.training_name,
+                "training_date": training.training_date.strftime("%d/%m/%Y"),
+            }
+            for training in trainings_done
         ]
 
         return jsonify(response)

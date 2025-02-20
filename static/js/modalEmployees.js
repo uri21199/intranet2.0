@@ -184,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clearRequestedDays();
 
 
-        fetch(`/get_requested_days?employee_id=${employeeId}`)
+        fetch(`/employees/get_requested_days?employee_id=${employeeId}`)
             .then(response => response.json())
             .then(data => {
                 if (data.error) {
@@ -260,7 +260,7 @@ function loadHomeOfficeDays(employeeId) {
     // Limpiar la tabla antes de cargar nuevos datos
     clearHomeOfficeDays();
 
-    fetch(`/get_home_office_days?employee_id=${employeeId}`)
+    fetch(`/employees/get_home_office_days?employee_id=${employeeId}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
@@ -342,7 +342,83 @@ document.getElementById("employees").addEventListener("change", function () {
 /**
  * Cargar los datos del empleado seleccionado por defecto al cargar la página
  */
-const defaultEmployee = document.getElementById("employees").value;
+defaultEmployee = document.getElementById("employees").value;
 if (defaultEmployee) {
     loadRequestedDays(defaultEmployee);
+}
+
+
+
+
+function clearTrainingsDone() {
+    document.getElementById("trainings-done").innerHTML = `
+        <tr><td colspan="2">Cargando...</td></tr>`;
+    document.getElementById("modal-trainings-content").innerHTML = `
+        <tr><td colspan="2">Cargando...</td></tr>`;
+}
+
+/**
+ * Función para cargar capacitaciones realizadas del empleado
+ */
+function loadTrainingsDone(employeeId) {
+    if (!employeeId) {
+        console.warn("No se proporcionó un ID de empleado.");
+        return;
+    }
+
+    // Limpiar antes de cargar
+    clearTrainingsDone();
+
+    fetch(`/employees/get_trainings_done?employee_id=${employeeId}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                console.error("Error en la respuesta del servidor:", data.error);
+                document.getElementById("trainings-done").innerHTML = `
+                    <tr><td colspan="2">Error: ${data.error}</td></tr>`;
+                return;
+            }
+
+            if (data.message) {
+                document.getElementById("trainings-done").innerHTML = `
+                    <tr><td colspan="2">${data.message}</td></tr>`;
+                document.getElementById("modal-trainings-content").innerHTML = `
+                    <tr><td colspan="2">${data.message}</td></tr>`;
+                return;
+            }
+
+            console.log(`Capacitaciones realizadas por ${employeeId}:`, data);
+
+            // Mostrar las 2 últimas capacitaciones en la card
+            document.getElementById("trainings-done").innerHTML = data.slice(0, 2).map(training => `
+                <tr>
+                    <td>${training.training_date}</td>
+                    <td>${training.training_name}</td>
+                </tr>
+            `).join("");
+
+            // Mostrar todas en el modal
+            document.getElementById("modal-trainings-content").innerHTML = data.map(training => `
+                <tr>
+                    <td>${training.training_date}</td>
+                    <td>${training.training_name}</td>
+                </tr>
+            `).join("");
+        })
+        .catch(error => {
+            console.error("Error cargando capacitaciones:", error);
+            document.getElementById("trainings-done").innerHTML = `
+                <tr><td colspan="2">Error al cargar datos.</td></tr>`;
+        });
+}
+
+// Evento al cambiar de empleado
+document.getElementById("employees").addEventListener("change", function () {
+    loadTrainingsDone(this.value);
+});
+
+// Cargar capacitaciones del empleado seleccionado al iniciar
+defaultEmployee = document.getElementById("employees").value;
+if (defaultEmployee) {
+    loadTrainingsDone(defaultEmployee);
 }

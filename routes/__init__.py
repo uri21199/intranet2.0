@@ -26,7 +26,7 @@ def register_blueprints(app):
     app.register_blueprint(dashboard_bp, url_prefix='/dashboard')  # Dashboard
     app.register_blueprint(days_bp, url_prefix='/days')
     app.register_blueprint(documents_bp)
-    app.register_blueprint(employees_bp)
+    app.register_blueprint(employees_bp, url_prefix='/employees')
     app.register_blueprint(myteam_bp, url_prefix='/myteam')
     app.register_blueprint(notifications_bp)
     app.register_blueprint(payroll_bp)
@@ -34,5 +34,5 @@ def register_blueprints(app):
     app.register_blueprint(rooms_bp, url_prefix="/rooms")
     app.register_blueprint(support_bp)
     app.register_blueprint(surveys_bp)
-    app.register_blueprint(trainings_bp)
+    app.register_blueprint(trainings_bp, url_prefix='/trainings')
     app.register_blueprint(settings_bp, url_prefix='/settings')
