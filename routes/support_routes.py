@@ -1,9 +1,6 @@
 from flask import Blueprint, request, jsonify, render_template, session
 from sqlalchemy.orm import joinedload
-from models.system_tickets import SystemTicket
-from models.ticket_categories import TicketCategory
-from models.ticket_subcategories import TicketSubcategory
-from models.ticket_status import TicketStatus
+from models import Employee, SystemTicket, TicketCategory, TicketSubcategory, TicketStatus, TicketUpdate    
 from config import SessionLocal
 from datetime import datetime, timedelta, timezone
 
@@ -135,3 +132,76 @@ def get_user_tickets():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+
+@support_bp.route("/get_tickets", methods=["GET"])
+def get_tickets():
+    user_roles = session.get("roles", [])
+    
+    if "soporte tecnico" not in user_roles:
+        return jsonify({"error": "Acceso no autorizado"}), 403
+
+    session_db = SessionLocal()
+
+    try:
+        tickets = session_db.query(
+            SystemTicket.id,
+            TicketCategory.name.label("category"),
+            TicketSubcategory.name.label("subcategory"),
+            SystemTicket.description,
+            TicketStatus.name.label("status"),
+            Employee.first_name.label("assigned_to"),
+            SystemTicket.created_at,
+            SystemTicket.closed_at
+        ).join(TicketCategory, TicketCategory.id == SystemTicket.category_id
+        ).join(TicketSubcategory, TicketSubcategory.id == SystemTicket.subcategory_id
+        ).join(TicketStatus, TicketStatus.id == SystemTicket.status_id
+        ).outerjoin(Employee, Employee.id == SystemTicket.assigned_to
+        ).filter(
+            TicketStatus.name != "Cerrado"
+        ).order_by(SystemTicket.created_at.desc()).all()
+
+        ticket_list = [
+            {
+                "id": t.id,
+                "category": t.category,
+                "subcategory": t.subcategory,
+                "description": t.description,
+                "status": t.status,
+                "assigned_to": t.assigned_to or "No asignado",
+                "created_at": t.created_at.strftime("%Y-%m-%d %H:%M"),
+                "closed_at": t.closed_at.strftime("%Y-%m-%d %H:%M") if t.closed_at else "No cerrado"
+            }
+            for t in tickets
+        ]
+        print("ESTA ES LA RUTA GET TICKTE 2137123123123132812238173291378")
+        print(ticket_list)
+        return jsonify(ticket_list)
+
+    except Exception as e:
+        print(f"Error en la consulta get_tickets: {str(e)}")
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        session_db.close()
+
+
+@support_bp.route("/get_ticket_filters", methods=["GET"])
+def get_ticket_filters():
+    session_db = SessionLocal()
+    try:
+        categories = session_db.query(TicketCategory.id, TicketCategory.name).all()
+        statuses = session_db.query(TicketStatus.id, TicketStatus.name).all()
+
+        filters = {
+            "categories": [{"id": c.id, "name": c.name} for c in categories],
+            "statuses": [{"id": s.id, "name": s.name} for s in statuses]
+        }
+
+        return jsonify(filters)
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    
+    finally:
+        session_db.close()

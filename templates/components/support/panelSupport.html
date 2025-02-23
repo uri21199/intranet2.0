@@ -1,6 +1,22 @@
 <div class="panelSupport">
     <h2>Panel de Estado para IT</h2>
-    <table class="table">
+
+    <!-- Filtros y búsqueda -->
+    <div class="filters">
+        <select id="categoryFilter">
+            <option value="">Filtrar por categoría</option>
+        </select>
+        <select id="statusFilter">
+            <option value="">Filtrar por estado</option>
+        </select>
+        <select id="assignedFilter">
+            <option value="">Filtrar por asignado a</option>
+        </select>
+        <input type="text" id="search-ticket" placeholder="Buscar ticket...">
+    </div>
+
+    <!-- Tabla de tickets -->
+    <table class="table" id="ticketsTable">
         <thead>
             <tr>
                 <th>ID</th>
@@ -8,16 +24,52 @@
                 <th>Descripción</th>
                 <th>Estado</th>
                 <th>Asignado a</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>5</td>
-                <td>Equipo Físico</td>
-                <td>Fallo en laptop</td>
-                <td>En proceso</td>
-                <td>Juan Pérez</td>
-            </tr>
+            <!-- Aquí se llenarán los tickets dinámicamente -->
         </tbody>
     </table>
+</div>
+
+<!-- Panel lateral de detalle del ticket -->
+<div id="ticketDetailsPanel" class="panel hidden">
+    <div class="panel-header">
+        <h3>Detalles del Ticket</h3>
+        <button id="closePanel">X</button>
+    </div>
+    <div class="panel-content">
+        <p><strong>ID:</strong> <span id="ticket-id"></span></p>
+        <p><strong>Categoría:</strong> <span id="ticket-category"></span></p>
+        <p><strong>Descripción:</strong> <span id="ticket-description"></span></p>
+        <p><strong>Estado:</strong>
+            <select id="ticket-status">
+                <!-- Opciones de estado se llenarán dinámicamente -->
+            </select>
+        </p>
+        <p><strong>Reasignar a:</strong>
+            <select id="ticket-assigned">
+                <!-- Opciones de usuarios se llenarán dinámicamente -->
+            </select>
+        </p>
+    </div>
+
+    <!-- Historial de cambios -->
+    <h4>Historial de Actualizaciones</h4>
+    <table class="table" id="ticketHistory">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Se llenará dinámicamente -->
+        </tbody>
+    </table>
+
+    <!-- Botón para cerrar ticket -->
+    <button id="closeTicket">Cerrar Ticket</button>
 </div>
