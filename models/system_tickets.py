@@ -12,7 +12,7 @@ class SystemTicket(Base):
     category_id = Column(Integer, ForeignKey("tickets.ticket_categories.id", ondelete="CASCADE"), nullable=False)
     subcategory_id = Column(Integer, ForeignKey("tickets.ticket_subcategories.id", ondelete="SET NULL"), nullable=True)
     description = Column(Text, nullable=False)
-    status = Column(String(50), default="Abierto")
+    status_id = Column(Integer, ForeignKey("tickets.ticket_statuses.id", ondelete="SET NULL"), nullable=True)
     assigned_to = Column(Integer, ForeignKey("hr.employees.id", ondelete="SET NULL"), nullable=True)
     created_at = Column(TIMESTAMP, server_default=func.now())
     closed_at = Column(TIMESTAMP, nullable=True)
@@ -22,3 +22,4 @@ class SystemTicket(Base):
     category = relationship("TicketCategory")
     subcategory = relationship("TicketSubcategory")
     assigned_employee = relationship("Employee", foreign_keys=[assigned_to])
+    status = relationship("TicketStatus")

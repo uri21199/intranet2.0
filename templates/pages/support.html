@@ -14,3 +14,6 @@
     {% include 'components/support/panelSupport.html' %}
 </div>
 {% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/support.js') }}"></script>
+{% endblock %}
