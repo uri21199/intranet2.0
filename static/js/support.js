@@ -78,3 +78,72 @@ function submitTicket() {
         })
         .catch(error => console.error("Error al enviar ticket:", error));
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    loadUserTickets();
+});
+
+function loadUserTickets() {
+    fetch("/support/get_user_tickets")
+        .then(response => response.json())
+        .then(data => {
+            let tableBody = document.getElementById("ticket-table-body");
+            tableBody.innerHTML = "";
+
+            if (data.error) {
+                tableBody.innerHTML = `<tr><td colspan="6">${data.error}</td></tr>`;
+                return;
+            }
+
+            if (data.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6">No hay tickets creados.</td></tr>`;
+                return;
+            }
+
+            data.forEach(ticket => {
+                let row = `
+                    <tr>
+                        <td>${ticket.id}</td>
+                        <td>${ticket.category}</td>
+                        <td>${ticket.subcategory}</td>
+                        <td>${ticket.description}</td>
+                        <td>${ticket.status}</td>
+                        <td>
+                            <button class="button view-ticket" data-id="${ticket.id}">Ver</button>
+                            <button class="button resend-ticket" data-id="${ticket.id}">Reenviar 📩</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+
+            // Agregar eventos a los botones
+            document.querySelectorAll(".resend-ticket").forEach(button => {
+                button.addEventListener("click", function () {
+                    let ticketId = this.dataset.id;
+                    resendTicket(ticketId);
+                });
+            });
+
+            document.querySelectorAll(".view-ticket").forEach(button => {
+                button.addEventListener("click", function () {
+                    let ticketId = this.dataset.id;
+                    openTicketModal(ticketId);
+                });
+            });
+
+        })
+        .catch(error => {
+            console.error("Error al cargar los tickets:", error);
+            document.getElementById("ticket-table-body").innerHTML = `<tr><td colspan="6">Error al cargar tickets.</td></tr>`;
+        });
+}
+
+function resendTicket(ticketId) {
+    alert(`Funcionalidad pendiente: Reenviar notificación para el ticket #${ticketId}`);
+}
+
+function openTicketModal(ticketId) {
+    alert(`Funcionalidad pendiente: Mostrar detalles del ticket #${ticketId}`);
+}

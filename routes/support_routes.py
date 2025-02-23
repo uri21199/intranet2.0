@@ -5,6 +5,7 @@ from models.ticket_categories import TicketCategory
 from models.ticket_subcategories import TicketSubcategory
 from models.ticket_status import TicketStatus
 from config import SessionLocal
+from datetime import datetime, timedelta, timezone
 
 support_bp = Blueprint("support", __name__)
 
@@ -90,3 +91,47 @@ def create_ticket():
 
     finally:
         session_db.close()
+
+@support_bp.route("/get_user_tickets", methods=["GET"])
+def get_user_tickets():
+    user_id = session.get("user_id")  # Obtener el usuario autenticado
+    if not user_id:
+        return jsonify({"error": "Usuario no autenticado"}), 401
+
+    session_db = SessionLocal()
+    try:
+        # Obtener fecha límite de 15 días atrás
+        fifteen_days_ago = datetime.now(timezone.utc) - timedelta(days=15)
+
+        tickets = session_db.query(
+            SystemTicket.id,
+            TicketCategory.name.label("category"),
+            TicketSubcategory.name.label("subcategory"),
+            SystemTicket.description,
+            TicketStatus.name.label("status"),
+            SystemTicket.closed_at
+        ).join(TicketCategory, TicketCategory.id == SystemTicket.category_id
+        ).join(TicketSubcategory, TicketSubcategory.id == SystemTicket.subcategory_id
+        ).join(TicketStatus, TicketStatus.id == SystemTicket.status_id
+        ).filter(
+            (SystemTicket.employee_id == user_id) &
+            (
+                (TicketStatus.name.in_(["Abierto", "En proceso", "Esperando usuario"]))
+            )
+        ).order_by(SystemTicket.created_at.desc()).all()
+
+        ticket_list = [
+            {
+                "id": ticket.id,
+                "category": ticket.category,
+                "subcategory": ticket.subcategory,
+                "description": ticket.description,
+                "status": ticket.status
+            }
+            for ticket in tickets
+        ]
+
+        return jsonify(ticket_list)
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
