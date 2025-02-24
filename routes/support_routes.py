@@ -134,6 +134,13 @@ def get_user_tickets():
         return jsonify({"error": str(e)}), 500
     
 
+
+
+
+
+
+    
+
 @support_bp.route("/get_tickets", methods=["GET"])
 def get_tickets():
     user_roles = session.get("roles", [])
@@ -159,7 +166,7 @@ def get_tickets():
         ).outerjoin(Employee, Employee.id == SystemTicket.assigned_to
         ).filter(
             TicketStatus.name != "Cerrado"
-        ).order_by(SystemTicket.created_at.desc()).all()
+        ).order_by(SystemTicket.id.desc()).all()
 
         ticket_list = [
             {
@@ -174,7 +181,6 @@ def get_tickets():
             }
             for t in tickets
         ]
-        print("ESTA ES LA RUTA GET TICKTE 2137123123123132812238173291378")
         print(ticket_list)
         return jsonify(ticket_list)
 
